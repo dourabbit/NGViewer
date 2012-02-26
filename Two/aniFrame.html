@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<title>Learning WebGL &mdash; lesson 4</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="Stats.js"></script>
+<script type="text/javascript" src="renderLib/baseShader.js"></script>
+<script type="text/javascript" src="renderLib/staticHelperFunc.js"></script>
+<script type="text/javascript" src="sysLib/joint.js"></script>
+<script type="text/javascript" src="sysLib/aniReader.js"></script>
+<script type="text/javascript" src="sysLib/helperFunc.js"></script>
+<!--<script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+
+    varying vec4 vColor;
+
+    void main(void) {
+        gl_FragColor = vColor;
+    }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying vec4 vColor;
+
+    void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+    }
+</script>-->
+
+
+<script type="text/javascript">
+
+    var gl;
+    var aniRender = new aniRenderer();
+    function initGL(canvas) {
+        try {
+            gl = canvas.getContext("experimental-webgl");
+            gl.viewportWidth = canvas.width;
+            gl.viewportHeight = canvas.height;
+        } catch (e) {
+        }
+        if (!gl) {
+            alert("Could not initialise WebGL, sorry :-(");
+        }
+    }
+
+    var bone;
+    function initSys() {
+
+        bone = new joint(null);
+        var test = new joint(null);
+        var reader = new aniReader();
+        reader.loadObj('./08.asf');
+    }
+
+
+    var rPyramid = 0;
+
+    function drawScene() {
+        gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        mat4.identity(pMatrix);
+        mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+
+        mat4.identity(mvMatrix);
+
+        mat4.translate(mvMatrix, [-1.5, 0.0, -8.0]);
+
+        mat4.rotate(mvMatrix, degToRad(rPyramid), [0, 1, 0]);
+        bone.draw(mvMatrix, null, pMatrix, shaderProgram);
+    }
+
+
+    var lastTime = 0;
+
+    function animate() {
+        var timeNow = new Date().getTime();
+        if (lastTime != 0) {
+            var elapsed = timeNow - lastTime;
+
+            rPyramid += (90 * elapsed) / 1000.0;
+            //rCube -= (75 * elapsed) / 1000.0;
+        }
+        lastTime = timeNow;
+    }
+
+
+    function tick() {
+        requestAnimFrame(tick);
+        drawScene();
+        animate();
+    }
+    function setStats() {
+
+        var stats = new Stats();
+
+        // Align top-left
+        stats.getDomElement().style.position = 'absolute';
+        stats.getDomElement().style.left = '0px';
+        stats.getDomElement().style.top = '0px';
+
+        document.body.appendChild(stats.getDomElement());
+
+        setInterval(function () {
+
+            stats.update();
+
+        }, 1000 / 60);
+    }
+
+    function webGLStart() {
+        var canvas = document.getElementById("aniFrame");
+        initGL(canvas);
+        aniRender.initShaders()
+        initSys();
+
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.enable(gl.DEPTH_TEST);
+        setStats();
+        tick();
+    }
+
+</script>
+
+
+</head>
+
+
+<body onload="webGLStart();">
+
+    <canvas id="aniFrame" style="border: none;" width="500" height="500"></canvas>
+
+
+</body>
+
+</html>
