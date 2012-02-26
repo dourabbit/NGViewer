@@ -346,15 +346,20 @@ var aniReader = (function () {
 	}
     
 
-    cls.prototype.printAnimData = function(){
+
+    //cls.prototype.printAnimData = function(){
     	//anim data printing
+
+    /*cls.prototype.printAnimData = function(){
+    	
+
     	for(var i =0;i<animData.length;i++)
     	{
     		document.write(animData[String(i)]['jointName']+"\n");
     		document.write(animData[String(i)]['dof']['rx']+"\n");
     		document.write(animData[String(i)]['frameNum']+"\n");
     	}
-    }
+    }*/
 
     return cls;
 })();
