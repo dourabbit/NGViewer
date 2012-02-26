@@ -354,6 +354,7 @@ var aniReader = (function () {
     		document.write(animData[String(i)]['dof']['rx']+"\n");
     		document.write(animData[String(i)]['frameNum']+"\n");
     	}
+    	//chengfu changed
     }
 
     return cls;
