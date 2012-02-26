@@ -346,7 +346,7 @@ var aniReader = (function () {
 	}
     
 
-    cls.prototype.printAnimData = function(){
+    /*cls.prototype.printAnimData = function(){
     	
     	for(var i =0;i<animData.length;i++)
     	{
@@ -354,7 +354,7 @@ var aniReader = (function () {
     		document.write(animData[String(i)]['dof']['rx']+"\n");
     		document.write(animData[String(i)]['frameNum']+"\n");
     	}
-    }
+    }*/
 
     return cls;
 })();
