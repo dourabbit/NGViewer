@@ -347,7 +347,7 @@ var aniReader = (function () {
     
 
     cls.prototype.printAnimData = function(){
-    	
+    	//anim data printing
     	for(var i =0;i<animData.length;i++)
     	{
     		document.write(animData[String(i)]['jointName']+"\n");
