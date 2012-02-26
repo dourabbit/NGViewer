@@ -8,12 +8,15 @@ var aniReader = (function () {
     };
     cls.prototype.loadObj = function(url){
     	var req = new XMLHttpRequest();
-        req.onreadystatechange = function () { cls.prototype.processLoadObj(req) };
+		if(url.indexOf(".asf")!=-1) 
+		        req.onreadystatechange = function () { cls.prototype.processLoadObj(req)};
+		else if(url.indexOf(".amc")!=-1)
+				req.onreadystatechange = function () { cls.prototype.processLoadAMC(req)};
         req.open("GET", url, true);
         req.send(null);
     };
     cls.prototype.parseASF = function(text){
-    	var result=[];
+    	result=[];
     	var args = text.match(/:[^:]*/g);//divided by ':*'
     	for(var paragraph in args){
     		
@@ -81,7 +84,7 @@ var aniReader = (function () {
     				
     			}
     		}
-    		document.write(result);
+    		//document.write(result);
     	}
     	
     };
@@ -130,7 +133,7 @@ var aniReader = (function () {
     		}
     	}
     	root = root.root;
-    	cls.prototype.printHierarchy(root,-1);
+    	//cls.prototype.printHierarchy(root,-1);
     	return root;
     }
     cls.prototype.printHierarchy = function(node,layer){
@@ -233,8 +236,94 @@ var aniReader = (function () {
 
     }
 
-    
-    
+    cls.prototype.frameData = function(frameNum, jointName, dof)
+    {
+    	this.frameNum = frameNum;
+    	this.jointName = jointName;
+    	this.dof = dof;
+    }
+
+    cls.prototype.getName = function(num)
+    {
+    	return result.bonedata[String(num)]['name'];
+    }
+
+    cls.prototype.getDof = function(num)
+    {
+    	return result.bonedata[String(num)]['dof'];
+    }
+    cls.prototype.parseAMC = function(text)
+    {
+    	var frameNumber = [];
+    	animData = [];
+    	var args = text.split('\n');
+    	var Info1 = args[1];
+    	var degOrRad = args[2]; 
+    	var frameCount = 0;
+    	    	
+    	for(var paragraph = 3;paragraph<args.length;paragraph++){
+    		var lines = args[paragraph].split(' '); 
+    		if(lines.length==1){//frame number
+    				frameNumber[frameCount] = lines[0];
+    				frameCount++;
+    				
+    			}
+    		else{
+    			if(lines[0] == "root")
+    			{
+    				frameDataRoot = new Object(); 
+    				frameDataRoot.frameNum =frameNumber[frameCount-1];
+    				frameDataRoot.jointName ="root";
+    				var dofValues = new Object();
+    				dofValues.tx = lines[1];
+    				dofValues.ty =lines[2];
+    				dofValues.tz =lines[3];
+    				dofValues.rx = lines[4];
+    				dofValues.ry=lines[5];
+    				dofValues.rz=lines[6];
+    				frameDataRoot.dof=dofValues;
+    			
+    				animData.push(frameDataRoot);
+    			}
+    			else
+    			{
+    				var dofValues1 = new Object();
+    				
+    				for(var boneOrder in result["bonedata"])
+    				{
+    					var name = cls.prototype.getName(boneOrder);
+    					
+    					if(name.substr(0,lines[0].length) == lines[0])
+    					{
+    						//alert("value matched");	
+    						var dof = cls.prototype.getDof(boneOrder).split(' ');
+    						for( var dofCount =0;dofCount<dof.length;dofCount++)
+    						{
+    							//alert(dofCount);
+    							switch(dof[dofCount].substr(0,2))
+    							{
+    							case "rx":
+    								dofValues1.rx = lines[dofCount+1];
+    								break;
+    							case "ry":
+    								dofValues1.ry = lines[dofCount+1];
+    								break;
+    							case "rz":
+    								dofValues1.rz = lines[dofCount+1];
+    								break;
+    							}			
+    						}
+    					}
+    					
+    				}
+    				animData.push(new cls.prototype.frameData(frameNumber[frameCount-1],lines[0],dofValues1));
+    			}
+    			
+    				//document.write(animData);
+    		}
+    	}
+
+    }
     
     cls.prototype.processLoadObj = function(req)
     {
@@ -244,9 +333,28 @@ var aniReader = (function () {
         	//var boneNum = args[args.length-1].split(' ')[1];
     		
         	cls.prototype.parseASF(text);
+        	
         }
     }
+    cls.prototype.processLoadAMC = function(req)
+	{
+		if (req.readyState == 4) {
+			var text = req.responseText;
+			cls.prototype.parseAMC(text);
+			//cls.prototype.printAnimData();
+		}
+	}
     
-    
+
+    cls.prototype.printAnimData = function(){
+    	
+    	for(var i =0;i<animData.length;i++)
+    	{
+    		document.write(animData[String(i)]['jointName']+"\n");
+    		document.write(animData[String(i)]['dof']['rx']+"\n");
+    		document.write(animData[String(i)]['frameNum']+"\n");
+    	}
+    }
+
     return cls;
 })();
