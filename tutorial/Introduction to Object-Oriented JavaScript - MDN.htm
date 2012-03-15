@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript -->
+<html lang="en" dir="ltr" id="developer-mozilla-org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Introduction to Object-Oriented JavaScript - MDN</title>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta name="Copyright" content="Copyright (c) 2005-2012 Mozilla.">
+<meta name="Rating" content="General">
+
+<link rel="home" href="https://developer.mozilla.org/">
+<link rel="copyright" href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#copyright">
+<meta name="robots" content="index,follow">
+<link rel="shortcut icon" href="https://developer.mozilla.org/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="What&#39;s new feed" href="https://developer.mozilla.org/index.php?title=Special:Recentchanges&feed=rss">
+<link rel="alternate" type="application/rss+xml" title="Page and subpages changes feed" href="https://developer.mozilla.org/index.php?title=Special:Article&type=feed&feedtype=subpagechanges&pageid=27004">
+<link rel="alternate" type="application/rss+xml" title="Page changes feed" href="https://developer.mozilla.org/index.php?title=Special:Article&type=feed&pageid=27004">
+<meta name="generator" content="MindTouch">
+<link rel="search" type="application/opensearchdescription+xml" title="MDN Search" href="https://developer.mozilla.org/deki/gui/opensearch.php?type=description">
+<link rel="stylesheet" type="text/css" media="screen" href="./Introduction to Object-Oriented JavaScript - MDN_files/css.php"> <!--[if IE 7]><style type="text/css">@import "/skins/common/_ie7.css";</style><![endif]--><!--[if IE 6]><style type="text/css">@import "/skins/common/_ie.css";</style><![endif]--><link rel="stylesheet" type="text/css" media="print" href="./Introduction to Object-Oriented JavaScript - MDN_files/print.css">
+<link rel="stylesheet" type="text/css" media="screen,projection" href="./Introduction to Object-Oriented JavaScript - MDN_files/css(1).php">
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="all" href="/skins/mdn/Transitional/ie7.css"><![endif]-->
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" media="all" href="/skins/mdn/Transitional/ie6.css"><![endif]-->
+<link rel="stylesheet" type="text/css" media="print" href="./Introduction to Object-Oriented JavaScript - MDN_files/print(1).css">
+
+<script type="text/javascript">CKEDITOR_BASEPATH = "/deki/plugins/page_editor_ckeditor/ckeditor/";</script>
+<script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/js.php"></script><script type="text/javascript">var _starttime = new Date().getTime();</script>
+
+<!--[if IE]>
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="/skins/mdn/Transitional/js/html5.js"></script>
+<![endif]-->
+
+	<script type="text/javascript">
+
+		var aLt = aLt || [];aLt["attach-no-description"] = 'No description'; aLt["cancel"] = 'Cancel'; aLt["close"] = 'Close'; aLt["comment-delete"] = 'Are you sure you want to delete this comment?'; aLt["contentrating-title-popup"] = 'Thanks for your feedback'; aLt["error"] = 'Error'; aLt["error-permission-denied"] = 'Permission denied'; aLt["error-permission-details"] = 'Your account does not have sufficient permissions to perform that action.'; aLt["gallery-close"] = 'close'; aLt["gallery-next"] = 'next'; aLt["gallery-prev"] = 'prev'; aLt["internal-error"] = 'Sorry, but there was an internal problem - please try again soon.'; aLt["js-label_cancel"] = 'Cancel'; aLt["js-label_save"] = 'Save'; aLt["js-tooltip_cancel"] = 'Exit Without Saving Changes'; aLt["js-tooltip_save"] = 'Save and Exit (Alt+S)'; aLt["ldap-provide-credentials"] = 'Please provide external service login credentials.'; aLt["loading"] = 'Loading...'; aLt["menu-confirm-delete"] = 'Are you sure you want to delete this file?'; aLt["menu-delete-file"] = 'Delete'; aLt["menu-edit-description"] = 'Edit description'; aLt["menu-move-file"] = 'Move'; aLt["menu-previous-versions"] = 'Previous versions'; aLt["menu-view-original"] = 'View original'; aLt["ready"] = 'Ready'; aLt["remove-tag"] = 'Remove tag'; aLt["restore-tag"] = 'Restore tag'; aLt["adding-tags"] = 'Adding Tags...'; aLt["save"] = 'Save'; aLt["submit"] = 'Submit'; aLt["wikibits-attach-another"] = 'Attach another file'; aLt["wikibits-attach-file"] = 'Attach File'; aLt["wikibits-cant-attach-editing"] = 'Sorry, you can\'t attach files while editing a page. Please close the editor first.'; aLt["wikibits-edit-section"] = 'Edit section'; aLt["wikibits-remove-file"] = 'Remove file'; aLt["advanced-search"] = 'Advanced Search'; aLt["standard-search"] = 'Standard Search';  var wfMsg = wfMsg || function (key) { return aLt[key] ? aLt[key] : 'MISSING: ' + key; };
+	//hook in menu clicking events to the document's body
+	YAHOO.util.Event.addListener(document, "click", function () { DWMenu.BodyClick(); });
+	YAHOO.util.Event.onDOMReady(function () { new clientWindow });
+
+		
+
+			YAHOO.util.Event.onDOMReady(function() {
+			tb_init("a.lightbox, area.lightbox, input.lightbox, a[rel='awesomebox']");//pass where to apply thickbox
+		});
+	
+			YAHOO.util.Event.onDOMReady(function() {
+			MTComments.HookBehavior();
+		});
+		</script>
+<link type="text/css" rel="stylesheet" href="./Introduction to Object-Oriented JavaScript - MDN_files/SyntaxHighlighter.css"><script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/shCore.js"></script><script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/shBrushJScript.js"></script><script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/rgbcolor.js"></script>
+<script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/nav.js"></script>
+
+<script type="text/javascript">
+
+Deki.BaseHref = 'https://developer.mozilla.org';
+Deki.PageId = 27004;
+Deki.PageTitle = 'en/JavaScript/Introduction to Object-Oriented JavaScript';
+Deki.PageLanguageCode = 'en';
+Deki.FollowRedirects = 1;
+Deki.PathTpl = '/skins/mdn';
+Deki.PathSkin = '/skins/mdn/Transitional';
+Deki.PathCommon = '/skins/common';
+Deki.UserName = 'Anonymous';
+Deki.Today = '10 Mar 2012';
+Deki.UserIsAnonymous = true;
+Deki.EditorConfigToken = '9c5a4bd1';
+Deki.EditorStylesToken = '78c6f3cd';
+Deki.PageEditable = false;
+</script>
+<script type="text/javascript">aLt["commercial-required"] = 'Gather feedback on your content with <strong>community scoring</strong> - these ratings weight results in adaptive search. Through curation analytics, ratings are used to highlight pages in need of attention. <a href="http://www.mindtouch.com/redir/mindtouch-tcs/">Learn more on enabling these capabilities with MindTouch 2010.</a>';aLt["login-required"] = 'You must be <a href="/index.php?title=Special:Userlogin&returntotitle=en%2FJavaScript%2FIntroduction+to+Object-Oriented+JavaScript">logged in</a> to perform that action';</script><link href="./Introduction to Object-Oriented JavaScript - MDN_files/custom_css.php" rel="stylesheet" type="text/css"> 
+ 
+<script src="./Introduction to Object-Oriented JavaScript - MDN_files/ga.js"></script></head>
+
+<body id="docs" class="section-docs en ltr yui-skin-sam PageDW-enJavaScriptIntroductiontoObjectOrientedJavaScript hasJS" role="document">
+<!--[if lte IE 8]>
+<noscript><div class="global-notice">
+<p><strong>Warning:</strong> The Mozilla Developer Network website employs emerging web standards that may not be fully supported in some versions of MicroSoft Internet Explorer. You can improve your experience of this website by enabling JavaScript.</p>
+</div></noscript>
+<![endif]-->
+<noscript>&lt;div class="noscript"&gt;This application requires Javascript to be enabled.&lt;/div&gt;</noscript>
+<header id="masthead" role="banner">
+  <div class="wrap">
+  
+    <div id="branding">
+      <h1 id="logo"><a href="https://developer.mozilla.org/"><img src="./Introduction to Object-Oriented JavaScript - MDN_files/mdn-logo-sm.png" alt="" title="" width="62" height="71"> Mozilla Developer Network</a></h1>
+    </div>
+    
+    <a id="moz-tab" href="http://mozilla.org/">Mozilla</a>
+
+    <nav id="nav" role="menubar">
+      <ul id="nav-main">
+        <li id="nav-main-topics" class="menu"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#nav-sub-topics" aria-haspopup="true" class="toggle" title="Explore other parts of MDN">Topics</a>
+          <ul id="nav-sub-topics" class="sub-menu" aria-hidden="true" style="display: none; ">
+            <li id="nav-sub-web"><a href="https://developer.mozilla.org/web">Web</a></li>
+            <li id="nav-sub-apps"><a href="https://developer.mozilla.org/apps">Apps</a></li>
+            <li id="nav-sub-mobile"><a href="https://developer.mozilla.org/mobile">Mobile</a></li>
+            <li id="nav-sub-addons"><a href="https://developer.mozilla.org/addons">Add-ons</a></li>
+            <li id="nav-sub-mozilla"><a href="https://developer.mozilla.org/mozilla">Mozilla</a></li>
+          </ul>
+        </li>
+        <li id="nav-main-docs" class="menu"><a href="https://developer.mozilla.org/docs" class="docs toggle" aria-haspopup="true" aria-labelledby="nav-main-docs">Docs</a>
+          <div id="nav-sub-docs" class="sub-menu" aria-hidden="true" style="display: none; ">
+            <ul>
+              <li>
+                <ul>
+                  <li><a href="https://developer.mozilla.org/en/HTML">HTML</a></li>
+                  <li><a href="https://developer.mozilla.org/en/DOM">DOM</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_audio_and_video_in_Firefox">Video</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_audio_and_video_in_Firefox">Audio</a></li>
+                  <li><a href="https://developer.mozilla.org/en/SVG">SVG</a></li>
+                  <li><a href="https://developer.mozilla.org/en/WebGL">WebGL</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li><a href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></li>
+                  <li><a href="https://developer.mozilla.org/en/WebSockets">WebSockets</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Offline_resources_in_Firefox">Offline Cache</a></li>
+                  <li><a href="https://developer.mozilla.org/en/DOM/Storage">Local Storage</a></li>
+                  <li><a href="https://developer.mozilla.org/en/IndexedDB">IndexedDB</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_files_from_web_applications">File API</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li><a href="https://developer.mozilla.org/en/CSS">CSS</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_gradients">Gradients</a></li>
+                  <li><a href="https://developer.mozilla.org/en/CSS/Using_CSS_transforms">Transforms</a></li>
+                  <li><a href="https://developer.mozilla.org/en/CSS/CSS_transitions">Transitions</a></li>
+                  <li><a href="https://developer.mozilla.org/en/CSS/CSS_animations">Animations</a></li>
+                  <li><a href="https://developer.mozilla.org/en/CSS/Media_queries">Media Queries</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li><a href="https://developer.mozilla.org/en/JavaScript">JavaScript</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Ajax">Ajax</a></li>
+                  <li><a href="https://developer.mozilla.org/en/HTML/Canvas">Canvas</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_geolocation">Geolocation</a></li>
+                  <li><a href="https://developer.mozilla.org/en/DragDrop/Drag_and_Drop">Drag &amp; Drop</a></li>
+                  <li><a href="https://developer.mozilla.org/en/Using_web_workers">Web Workers</a></li>
+                </ul>
+              </li>
+            </ul>
+            <p><a href="https://developer.mozilla.org/docs">More docs…</a></p>
+          </div>
+        </li>
+        <li id="nav-main-demos"><a href="https://developer.mozilla.org/demos" class="demos">Demos</a></li>
+        <li id="nav-main-learning"><a href="https://developer.mozilla.org/learn" class="learning">Learning</a></li>
+        <li id="nav-main-community" class="menu"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#nav-sub-community" class="community toggle" aria-haspopup="true" aria-labelledby="nav-main-community">Community</a>
+          <ul id="nav-sub-community" class="sub-menu" aria-hidden="true" style="display: none; ">
+            <li><a href="https://developer.mozilla.org/events">Events</a></li>
+            <li><a href="https://developer.mozilla.org/discussions">Discussions</a></li>
+            <li><a href="https://developer.mozilla.org/promote">Promote</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    
+          <ul class="user-state signed-out superfish" data-browserid-header-signin-html="/en-US/users/browserid_header_signin_html" style="display: block; ">    <li class="user-signin menu">
+      <form class="browserid" action="https://developer.mozilla.org/en-US/users/browserid_verify" method="POST"><div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="ac89854c083397747240cacb80ac434f"></div>
+        <input id="next" name="next" type="hidden" value="/en/Introduction_to_Object-Oriented_JavaScript">
+        <input required="required" type="hidden" name="assertion" id="id_assertion">
+                        <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" target="_blank" class="browserid-signin toggle" aria-haspopup="true" title="Sign in with BrowserID">Sign in</a> 
+                <div class="browserid-info sub-menu" aria-hidden="true" style="display: none; ">
+                <h3>What's this?</h3> <p>MDN has switched to <a href="https://browserid.org/" target="_blank" rel="external">BrowserID</a>, a safe and simple way to sign in with just your e-mail address. <a href="http://identity.mozilla.com/post/12950196039/deploying-browserid-at-mozilla" rel="external">Learn more about why Mozilla is using BrowserID</a>.</p> <p><strong>Returning members:</strong> sign in with BrowserID and you'll be connected to your MDN profile (all your information is still here).</p> <p><strong>New members:</strong> sign in with BrowserID first, then you'll be able to set up your new MDN profile.</p>          <p><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" target="_blank" class="browserid-signin" title="Sign in with BrowserID">Sign in</a></p>
+        </div>
+              </form>
+    </li></ul>
+        
+    <form id="site-search" method="get" action="https://developer.mozilla.org/search">
+      <p>
+        <input type="text" role="search" placeholder="Search MDN" id="q" name="q">
+        <noscript>&lt;button type="submit"&gt;Search&lt;/button&gt;</noscript>
+      </p>
+      
+      <div id="site-search-gg"><div class="gsc-branding"><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img-noclear"><img src="./Introduction to Object-Oriented JavaScript - MDN_files/small-logo.png" class="gsc-branding-img-noclear"></td></tr></tbody></table></div></div>
+    </form>
+
+  </div>
+</header>
+
+
+<section id="nav-toolbar">
+<div class="wrap">
+
+<nav id="tool-menus">
+  <ul id="tools" class="superfish">
+    <li class="menu">
+      <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#site-tools" class="toggle">Site tools</a>
+      <ul id="site-tools" class="sub-menu" role="navigation" style="visibility: hidden; display: none; " aria-hidden="true">
+         
+        <li class="site-recent">	<a href="https://developer.mozilla.org/Special:Recentchanges" title="Recent changes">Recent changes</a>
+</li>
+        <li class="site-rss">	<a href="https://developer.mozilla.org/Special:ListRss" title="RSS feeds">RSS feeds</a>
+</li>
+      	<li class="siteListusers"><a href="https://developer.mozilla.org/User:" title="Users">Users</a></li>
+              <li class="site-templates">	<a href="https://developer.mozilla.org/Template:" title="Templates">Templates</a>
+</li>
+              <li class="site-map">	<a href="https://developer.mozilla.org/Special:Sitemap" title="Sitemap">Sitemap</a>
+</li>
+        <li class="site-popular">	<a href="https://developer.mozilla.org/Special:Popularpages" title="Popular pages">Popular pages</a>
+</li>
+      	<li class="siteAbout"><a href="https://developer.mozilla.org/Special:About" title="About MDN">About MDN</a></li>
+      </ul>
+    </li>
+    <li class="menu">
+      <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#page-tools" class="toggle">This page</a>
+      <ul id="page-tools" class="sub-menu" role="navigation" style="visibility: hidden; display: none; " aria-hidden="true">
+                                <li class="page-new"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" title="New page" class="disabled ">New sub-page</a></li>
+                    <li class="page-history"><a href="https://developer.mozilla.org/index.php?title=en/JavaScript/Introduction_to_Object-Oriented_JavaScript&action=history" title="Page history">History</a></li>
+                    <li class="page-talk">	<a href="https://developer.mozilla.org/Talk:en/JavaScript/Introduction_to_Object-Oriented_JavaScript" title="Talk page">Talk page</a>
+</li>
+                                                        <li class="page-print">	<a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="return window.print();" title="Print page">Print page</a>
+</li>
+            <li class="page-backlinks"><a href="https://developer.mozilla.org/index.php?title=Special:Article&type=backlinks&pageid=27004">Pages that link here</a></li>      </ul>
+    </li>
+      <li class="menu">
+      <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" class="toggle">Languages</a>
+      <ul style="display: none; visibility: hidden; "><li><a rel="internal" href="https://developer.mozilla.org/es/Introducci%C3%B3n_a_JavaScript_orientado_a_objetos" title="es/Introducción_a_JavaScript_orientado_a_objetos">Español</a></li></ul>    </li>
+    </ul>
+</nav>
+
+  <nav class="crumbs" role="navigation">
+    <ol>
+      <li class="crumb-one"><a href="https://developer.mozilla.org/">MDN</a></li>
+      <li class="crumb-two"><a href="https://developer.mozilla.org/docs">Docs</a></li>
+    <li class="first"><a href="https://developer.mozilla.org/" class="deki-ns">MDN</a></li>
+<li class="second"><a href="https://developer.mozilla.org/en" class="deki-ns">MDN</a></li>
+<li><a href="https://developer.mozilla.org/en/JavaScript" class="deki-ns">JavaScript</a></li>
+<li class="last"><a href="https://developer.mozilla.org/en/JavaScript/Introduction_to_Object-Oriented_JavaScript" class="deki-ns current">Introduction to Object-Oriented JavaScript</a></li> 
+    </ol>
+  </nav>
+
+</div>
+</section>
+
+<section id="content">
+<div class="wrap">
+  <div id="content-main" class="full">
+
+    <div id="sessionMsg"><div class="inner"><ul></ul></div></div>
+        
+    <article class="article PageDW-enJavaScriptIntroductiontoObjectOrientedJavaScript" role="main">
+            
+            <div class="page-title hideforedit">
+              <h1 class="first" id="title">Introduction to Object-Oriented JavaScript</h1>            
+              <span class="page-moved"><a class="pageMoved" href="https://developer.mozilla.org/index.php?title=en/Introduction_to_Object-Oriented_JavaScript&redirect=no">Redirected from en/Introduction to Object-Oriented JavaScript</a></span>
+      
+              <ul id="page-buttons">
+          <li class="page-edit"><a href="https://developer.mozilla.org/index.php?title=Special:Userlogin&returntotitle=en%2FJavaScript%2FIntroduction+to+Object-Oriented+JavaScript" class="disabled" title="Log in or sign up to edit this page">Edit</a></li>
+          <li class="page-watch"><a href="https://developer.mozilla.org/index.php?title=Special:Userlogin&returntotitle=en%2FJavaScript%2FIntroduction+to+Object-Oriented+JavaScript" class="disabled" title="Log in or sign up to add this page to your watch list">Watch</a></li>
+        </ul> 
+            </div>
+      
+    <div class="page-content boxed">
+
+     
+      <div id="article-nav" class="hideforedit">      
+              <div class="page-toc">
+          <h2>Table of contents</h2>
+          <ol style="list-style-type:none; margin-left:0px; padding-left:0px;"><li><span>1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#JavaScript_review" rel="internal">JavaScript review</a></li><li><span>2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Object-oriented_programming" rel="internal">Object-oriented programming</a></li><li><span>3.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Terminology" rel="internal">Terminology</a></li><li><span>4.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Prototype-based_programming" rel="internal">Prototype-based programming</a></li><li><span>5.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#JavaScript_Object_Oriented_Programming" rel="internal">JavaScript Object Oriented Programming</a><ol style="list-style-type:none; margin-left:0px; padding-left:15px;"><li><span>5.1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Core_Objects" rel="internal">Core Objects</a></li><li><span>5.2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Custom_Objects" rel="internal">Custom Objects</a><ol style="list-style-type:none; margin-left:0px; padding-left:15px;"><li><span>5.2.1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Class" rel="internal">The Class</a></li><li><span>5.2.2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Object_(Class_Instance)" rel="internal">The Object (Class Instance)</a></li><li><span>5.2.3.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Constructor" rel="internal">The Constructor</a></li><li><span>5.2.4.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Property_(object_attribute)" rel="internal">The Property (object attribute)</a></li><li><span>5.2.5.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_methods" rel="internal">The methods</a></li><li><span>5.2.6.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Inheritance" rel="internal">Inheritance</a></li><li><span>5.2.7.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Encapsulation" rel="internal">Encapsulation</a></li><li><span>5.2.8.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Abstraction" rel="internal">Abstraction</a></li><li><span>5.2.9.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Polymorphism" rel="internal">Polymorphism</a></li></ol></li></ol></li><li><span>6.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Notes" rel="internal">Notes</a></li><li><span>7.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#References" rel="internal">References</a></li></ol>        </div>
+      
+        <ul class="page-anchors">
+          <li class="anchor-tags"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#page-tags" title="Jump to tags for this article">Tags</a></li>
+          <li class="anchor-files"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#page-files" title="Jump to files for this article">Files</a></li>
+        </ul>
+
+              <div id="deki-page-alerts" class="disabled">
+				<div class="toggle">
+					<a href="javascript:void(0);" class="off">
+						<span>Page Notifications</span>
+						<span class="status">Off</span>
+					</a>
+				</div></div>      
+      
+      </div> 
+    
+            
+      <div id="page-top"><div id="pageToc"><div class="pageToc"><h5>Table of contents</h5><ol style="list-style-type:none; margin-left:0px; padding-left:0px;"><li><span>1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#JavaScript_review" rel="internal">JavaScript review</a></li><li><span>2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Object-oriented_programming" rel="internal">Object-oriented programming</a></li><li><span>3.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Terminology" rel="internal">Terminology</a></li><li><span>4.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Prototype-based_programming" rel="internal">Prototype-based programming</a></li><li><span>5.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#JavaScript_Object_Oriented_Programming" rel="internal">JavaScript Object Oriented Programming</a><ol style="list-style-type:none; margin-left:0px; padding-left:15px;"><li><span>5.1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Core_Objects" rel="internal">Core Objects</a></li><li><span>5.2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Custom_Objects" rel="internal">Custom Objects</a><ol style="list-style-type:none; margin-left:0px; padding-left:15px;"><li><span>5.2.1.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Class" rel="internal">The Class</a></li><li><span>5.2.2.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Object_(Class_Instance)" rel="internal">The Object (Class Instance)</a></li><li><span>5.2.3.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Constructor" rel="internal">The Constructor</a></li><li><span>5.2.4.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_Property_(object_attribute)" rel="internal">The Property (object attribute)</a></li><li><span>5.2.5.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#The_methods" rel="internal">The methods</a></li><li><span>5.2.6.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Inheritance" rel="internal">Inheritance</a></li><li><span>5.2.7.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Encapsulation" rel="internal">Encapsulation</a></li><li><span>5.2.8.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Abstraction" rel="internal">Abstraction</a></li><li><span>5.2.9.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Polymorphism" rel="internal">Polymorphism</a></li></ol></li></ol></li><li><span>6.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Notes" rel="internal">Notes</a></li><li><span>7.</span> <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#References" rel="internal">References</a></li></ol></div></div><div class="pageText" id="pageText"><p>JavaScript has strong object-oriented programming capabilities, even though some debates have taken place due to the differences in object-oriented JavaScript compared to other languages.</p>
+<p>This article starts with an Introduction to object-oriented programming, then reviews the JavaScript object model, and finally demonstrates concepts of object-oriented programming in JavaScript.</p>
+<div id="section_1"><span id="JavaScript_Review"></span><span id="JavaScript_review"></span><h2 class="editable">JavaScript review</h2>
+<p>If you don't feel confident about JavaScript concepts such as variables, types, functions, and scope you can read about those topics in <a title="en/JavaScript/A_re-introduction_to_JavaScript" rel="internal" href="https://developer.mozilla.org/en/JavaScript/A_re-introduction_to_JavaScript">A re-introduction to JavaScript</a>. You can also consult the <a title="en/JavaScript/Guide" rel="internal" href="https://developer.mozilla.org/en/JavaScript/Guide">Core JavaScript 1.5 Guide</a>.</p>
+</div><div id="section_2"><span id="Object-oriented_programming"></span><h2 class="editable">Object-oriented programming</h2>
+<p>Object-oriented programming is a programming paradigm that uses abstraction to create models based on the real world. It uses several techniques from previously established paradigms, including modularity, polymorphism, and encapsulation. Today, many popular programming languages (such as Java, JavaScript, C#, C++, Python, PHP, Ruby and Objective-C) support object-oriented programming (OOP).</p>
+<p>Object-oriented programming may be seen as the design of software using a collection of cooperating objects, as opposed to a traditional view in which a program may be seen as a collection of functions, or simply as a list of instructions to the computer. In OOP, each object is capable of receiving messages, processing data, and sending messages to other objects. Each object can be viewed as an independent little machine with a distinct role or responsibility.</p>
+<p>Object-oriented programming is intended to promote greater flexibility and maintainability in programming, and is widely popular in large-scale software engineering. By virtue of its strong emphasis on modularity, object oriented code is intended to be simpler to develop and easier to understand later on, lending itself to more direct analysis, coding, and understanding of complex situations and procedures than less modular programming methods.<sup><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Reference">2</a></sup></p>
+</div><div id="section_3"><span id="Terminology"></span><h2 class="editable">Terminology</h2>
+<dl> <dt>Class</dt> <dd>Defines the characteristics of the Object.</dd> <dt>Object</dt> <dd>An Instance of a Class.</dd> <dt>Property</dt> <dd>An Object characteristic, such as color.</dd> <dt>Method</dt> <dd>An Object capability, such as walk.</dd> <dt>Constructor</dt> <dd>A method called at the moment of instantiation.</dd> <dt>Inheritance</dt> <dd>A Class can inherit characteristics from another Class.</dd> <dt>Encapsulation</dt> <dd>A Class defines only the characteristics of the Object, a method defines only how the method executes.</dd> <dt>Abstraction</dt> <dd>The conjunction of complex inheritance, methods, properties of an Object must be able to simulate a reality model.</dd> <dt>Polymorphism</dt> <dd>Different Classes might define the same method or property.</dd>
+</dl>
+<p>For a more extensive description of object-oriented programming, see <a class="external" rel="external" href="http://en.wikipedia.org/wiki/Object_oriented_programming" title="http://en.wikipedia.org/wiki/Object_oriented_programming" target="_blank">Object-oriented programming</a> at Wikipedia.</p>
+</div><div id="section_4"><span id="Prototype-based_programming"></span><h2 class="editable">Prototype-based programming</h2>
+<p>Prototype-based programming is a style of object-oriented programming in which classes are not present, and behavior reuse (known as inheritance in class-based languages) is accomplished through a process of decorating existing objects which serve as prototypes. This model is also known as class-less, prototype-oriented, or instance-based programming.</p>
+<p>The original (and most canonical) example of a prototype-based language is the programming language Self developed by David Ungar and Randall Smith. However, the class-less programming style has recently grown increasingly popular, and has been adopted for programming languages such as JavaScript, Cecil, NewtonScript, Io, MOO, REBOL, Kevo, Squeak (when using the Viewer framework to manipulate Morphic components), and several others.<sup><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#Reference">2</a></sup></p>
+</div><div id="section_5"><span id="JavaScript_Object_Oriented_Programming"></span><h2 class="editable">JavaScript Object Oriented Programming</h2>
+<div id="section_6"><span id="Core_Objects"></span><h3 class="editable">Core Objects</h3>
+<p>JavaScript has several objects included in its core; for example, there are objects like Math, Object, Array, and String. The example below shows how to use the Math object to get a random number by using its <code>random()</code> method.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span>alert(Math.random());&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">alert(Math.random());</pre>
+        
+<div class="note"><strong>Note:</strong> This and all further examples presume a function named <code>alert</code> (such as the one included in web browsers) is defined globally. The <code>alert</code> function is not actually a part of JavaScript itself.</div>
+<p>See <a title="En/Core_JavaScript_1.5_Reference/Global_Objects" rel="internal" href="https://developer.mozilla.org/En/Core_JavaScript_1.5_Reference/Global_Objects">Core JavaScript 1.5 Reference:Global Objects</a> for a list of the core objects in JavaScript.</p>
+<p>Every object in JavaScript is an instance of the object <code>Object</code> and therefore inherits all its properties and methods.</p>
+</div><div id="section_7"><span id="Custom_Objects"></span><h3 class="editable">Custom Objects</h3>
+<div id="section_8"><span id="The_Class"></span><h4 class="editable">The Class</h4>
+<p>JavaScript is a prototype-based language which contains no class statement, such as is found in C++ or Java. This is sometimes confusing for programmers accustomed to languages with a class statement. Instead, JavaScript uses functions as classes. Defining a class is as easy as defining a function. In the example below we define a new class called Person.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person()&nbsp;{&nbsp;}&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person() { }</pre>
+        
+</div><div id="section_9"><span id="The_Object_.28Class_Instance.29"></span><span id="The_Object_(Class_Instance)"></span><h4 class="editable">The Object (Class Instance)</h4>
+<p>To create a new instance of an object <em><code>obj</code></em> we use the statement <code>new <em>obj</em></code>, assigning the result (which is of type <em><code>obj</code></em>) to a variable to access it later.</p>
+<p>In the example below we define a class named <code>Person</code> and we create two instances (<code>person1</code> and <code>person2</code>).</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person()&nbsp;{&nbsp;}&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">var</span><span>&nbsp;person1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person();&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;person2&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person();&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person() { }
+var person1 = new Person();
+var person2 = new Person();</pre>
+        
+<div class="note">Please also see <a title="Object.create" rel="internal" href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create">Object.create</a> for a new and alternative instantiation method.</div>
+</div><div id="section_10"><span id="The_Constructor"></span><h4 class="editable">The Constructor</h4>
+<p>The constructor is called at the moment of instantiation (the moment when the object instance is created). The constructor is a method of the class. In JavaScript, the function serves as the constructor of the object; therefore, there is no need to explicitly define a constructor method. Every action declared in the class gets executed at the time of instantiation.</p>
+<p>The constructor is used to set the object's properties or to call methods to prepare the object for use. Adding class methods and their definitions occurs using a different syntax described later in this article.</p>
+<p>In the example below, the constructor of the class <code>Person</code> displays an alert when a <code>Person</code> is instantiated.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person()&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;alert(<span class="string">'Person&nbsp;instantiated'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;person1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person();&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">var</span><span>&nbsp;person2&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person();&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person() {
+  alert('Person instantiated');
+}
+
+var person1 = new Person();
+var person2 = new Person();</pre>
+        
+</div><div id="section_11"><span id="The_Property_.28object_attribute.29"></span><span id="The_Property_(object_attribute)"></span><h4 class="editable">The Property (object attribute)</h4>
+<p>Properties are variables contained in the class; every instance of the object has those properties. Properties should be set in the prototype property of the class (function) so that inheritance works correctly.</p>
+<p>Working with properties from within the class is done by the keyword <code>this</code>, which refers to the current object. Accessing (reading or writing) a property outside of the class is done with the syntax: <code>InstanceName.Property</code>; this is the same syntax used by C++, Java, and a number of other languages. (Inside the class the syntax <code>this.Property</code> is used to get or set the property's value.)</p>
+<p>In the example below we define the <code>gender</code> property for the <code>Person</code> class and we define it at instantiation.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person(gender)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="keyword">this</span><span>.gender&nbsp;=&nbsp;gender;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;alert(<span class="string">'Person&nbsp;instantiated'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">var</span><span>&nbsp;person1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person(</span><span class="string">'Male'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;person2&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person(</span><span class="string">'Female'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//display&nbsp;the&nbsp;person1&nbsp;gender</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>alert(<span class="string">'person1&nbsp;is&nbsp;a&nbsp;'</span><span>&nbsp;+&nbsp;person1.gender);&nbsp;</span><span class="comment">//&nbsp;person1&nbsp;is&nbsp;a&nbsp;Male</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person(gender) {
+  this.gender = gender;
+  alert('Person instantiated');
+}
+
+var person1 = new Person('Male');
+var person2 = new Person('Female');
+
+//display the person1 gender
+alert('person1 is a ' + person1.gender); // person1 is a Male</pre>
+        
+</div><div id="section_12"><span id="The_methods"></span><h4 class="editable">The methods</h4>
+<p>Methods follow the same logic as properties; the difference is that they are functions and they are defined as functions. Calling a method is similar to accessing a property, but you add <code>()</code> at the end of the method name, possibly with arguments. To define a method, assign a function to a named property of the class's <code>prototype</code> property; the name that the function is assigned to is the name that the method is called by on the object.</p>
+<p>In the example below we define and use the method <code>sayHello()</code> for the <code>Person</code> class.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person(gender)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="keyword">this</span><span>.gender&nbsp;=&nbsp;gender;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;alert(<span class="string">'Person&nbsp;instantiated'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>Person.prototype.sayHello&nbsp;=&nbsp;<span class="keyword">function</span><span>()&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;alert&nbsp;(<span class="string">'hello'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>};&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;person1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person(</span><span class="string">'Male'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">var</span><span>&nbsp;person2&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person(</span><span class="string">'Female'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">//&nbsp;call&nbsp;the&nbsp;Person&nbsp;sayHello&nbsp;method.</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>person1.sayHello();&nbsp;<span class="comment">//&nbsp;hello</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person(gender) {
+  this.gender = gender;
+  alert('Person instantiated');
+}
+
+Person.prototype.sayHello = function()
+{
+  alert ('hello');
+};
+
+var person1 = new Person('Male');
+var person2 = new Person('Female');
+
+// call the Person sayHello method.
+person1.sayHello(); // hello</pre>
+        
+<p>In JavaScript methods are regular function objects that are bound to a class/object as a property which means they can be invoked "out of the context". Consider the following example code:</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;Person(gender)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="keyword">this</span><span>.gender&nbsp;=&nbsp;gender;&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>Person.prototype.sayGender&nbsp;=&nbsp;<span class="keyword">function</span><span>()&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;alert(<span class="keyword">this</span><span>.gender);&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">var</span><span>&nbsp;person1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Person(</span><span class="string">'Male'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;genderTeller&nbsp;=&nbsp;person1.sayGender;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>person1.sayGender();&nbsp;<span class="comment">//&nbsp;alerts&nbsp;'Male'</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>genderTeller();&nbsp;<span class="comment">//&nbsp;alerts&nbsp;undefined</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>alert(genderTeller&nbsp;===&nbsp;person1.sayGender);&nbsp;<span class="comment">//&nbsp;alerts&nbsp;true</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>alert(genderTeller&nbsp;===&nbsp;Person.prototype.sayGender);&nbsp;<span class="comment">//&nbsp;alerts&nbsp;true</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">function Person(gender) {
+  this.gender = gender;
+}
+
+Person.prototype.sayGender = function()
+{
+  alert(this.gender);
+};
+
+var person1 = new Person('Male');
+var genderTeller = person1.sayGender;
+
+person1.sayGender(); // alerts 'Male'
+genderTeller(); // alerts undefined
+alert(genderTeller === person1.sayGender); // alerts true
+alert(genderTeller === Person.prototype.sayGender); // alerts true</pre>
+        
+<p>This example demonstrates many concepts at once. It shows that there are no "per-object methods" in JavaScript since all references to the method point to the exact same function, the one we have defined in the first place on the prototype. JavaScript "binds" the current "object context" to the special "this" variable when a function is invoked as a method(or property to be exact) of an object. This is equal to calling the function objects "call" method as follows:</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span>genderTeller.call(person1);&nbsp;</span><span class="comment">//alerts&nbsp;'Male'</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">genderTeller.call(person1); //alerts 'Male'</pre>
+        
+<div class="note">See more about this on <a title="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/call" rel="internal" href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/call">Function.call</a> and <a title="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply" rel="internal" href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply">Function.apply</a></div></div><div id="section_13"><span id="Inheritance"></span><h4 class="editable">Inheritance</h4>
+<p>Inheritance is a way to create a class as a specialized version of one or more classes (<em>JavaScript only supports single class inheritance</em>). The specialized class is commonly called the <em>child</em>, and the other class is commonly called the parent. In JavaScript you do this by assigning an instance of the parent class to the child class, and then specializing it.</p>
+<p></p><div class="note"><strong>Note:</strong>&nbsp;JavaScript does not detect the child class <code>prototype.constructor</code> see <a rel="internal" href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Object/prototype" title="en/Core_JavaScript_1.5_Reference/Global_Objects/Object/prototype">Core JavaScript 1.5 Reference:Global Objects:Object:prototype</a> property, so we must state that manually.</div>
+<p></p>
+<p>In the example below, we define the class <code>Student</code> as a child class of <code>Person</code>. Then we redefine the <code>sayHello()</code> method and add the <code>sayGoodBye()</code> method.</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="comment">//&nbsp;define&nbsp;the&nbsp;Person&nbsp;Class</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">function</span><span>&nbsp;Person()&nbsp;{}&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>Person.prototype.walk&nbsp;=&nbsp;<span class="keyword">function</span><span>(){&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;alert&nbsp;(<span class="string">'I&nbsp;am&nbsp;walking!'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li><li class="alt"><span>Person.prototype.sayHello&nbsp;=&nbsp;<span class="keyword">function</span><span>(){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;alert&nbsp;(<span class="string">'hello'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>};&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//&nbsp;define&nbsp;the&nbsp;Student&nbsp;class</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">function</span><span>&nbsp;Student()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="comment">//&nbsp;Call&nbsp;the&nbsp;parent&nbsp;constructor</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;Person.call(<span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//&nbsp;inherit&nbsp;Person</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>Student.prototype&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Person();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">//&nbsp;correct&nbsp;the&nbsp;constructor&nbsp;pointer&nbsp;because&nbsp;it&nbsp;points&nbsp;to&nbsp;Person</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>Student.prototype.constructor&nbsp;=&nbsp;Student;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//&nbsp;replace&nbsp;the&nbsp;sayHello&nbsp;method</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>Student.prototype.sayHello&nbsp;=&nbsp;<span class="keyword">function</span><span>(){&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;alert(<span class="string">'hi,&nbsp;I&nbsp;am&nbsp;a&nbsp;student'</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">//&nbsp;add&nbsp;sayGoodBye&nbsp;method</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>Student.prototype.sayGoodBye&nbsp;=&nbsp;<span class="keyword">function</span><span>(){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;alert(<span class="string">'goodBye'</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">var</span><span>&nbsp;student1&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Student();&nbsp;&nbsp;</span></span></li><li class=""><span>student1.sayHello();&nbsp;&nbsp;</span></li><li class="alt"><span>student1.walk();&nbsp;&nbsp;</span></li><li class=""><span>student1.sayGoodBye();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">//&nbsp;check&nbsp;inheritance</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>alert(student1&nbsp;<span class="keyword">instanceof</span><span>&nbsp;Person);&nbsp;</span><span class="comment">//&nbsp;true&nbsp;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>alert(student1&nbsp;<span class="keyword">instanceof</span><span>&nbsp;Student);&nbsp;</span><span class="comment">//&nbsp;true</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">// define the Person Class
+function Person() {}
+
+Person.prototype.walk = function(){
+  alert ('I am walking!');
+};
+Person.prototype.sayHello = function(){
+  alert ('hello');
+};
+
+// define the Student class
+function Student() {
+  // Call the parent constructor
+  Person.call(this);
+}
+
+// inherit Person
+Student.prototype = new Person();
+
+// correct the constructor pointer because it points to Person
+Student.prototype.constructor = Student;
+ 
+// replace the sayHello method
+Student.prototype.sayHello = function(){
+  alert('hi, I am a student');
+}
+
+// add sayGoodBye method
+Student.prototype.sayGoodBye = function(){
+  alert('goodBye');
+}
+
+var student1 = new Student();
+student1.sayHello();
+student1.walk();
+student1.sayGoodBye();
+
+// check inheritance
+alert(student1 instanceof Person); // true 
+alert(student1 instanceof Student); // true</pre>
+        
+</div><div id="section_14"><span id="Encapsulation"></span><h4 class="editable">Encapsulation</h4>
+<p>In the previous example, <code>Student</code> does not need to know how the <code>Person</code> class's <code>walk()</code> method is implemented, but still can use that method; the <code>Student</code> class doesn't need to explicitly define that method unless we want to change it. This is called <strong>encapsulation</strong>, by which every class inherits the methods of its parent and only needs to define things it wishes to change.</p>
+</div><div id="section_15"><span id="Abstraction"></span><h4 class="editable">Abstraction</h4>
+<p>Abstraction is a mechanism that permits modeling the current part of the working problem. This can be achieved by inheritance (specialization), or composition. JavaScript achieves specialization by inheritance, and composition by letting instances of classes be the values of attributes of other objects.</p>
+<p>The JavaScript Function class inherits from the Object class (this demonstrates specialization of the model). and the Function.prototype property is an instance of Object (this demonstrates composition)</p>
+
+          <div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">var</span><span>&nbsp;foo&nbsp;=&nbsp;</span><span class="keyword">function</span><span>(){};&nbsp;&nbsp;</span></span></li><li class=""><span>alert(&nbsp;<span class="string">'foo&nbsp;is&nbsp;a&nbsp;Function:&nbsp;'</span><span>&nbsp;+&nbsp;(foo&nbsp;</span><span class="keyword">instanceof</span><span>&nbsp;Function)&nbsp;);&nbsp;&nbsp;</span></span></li><li class="alt"><span>alert(&nbsp;<span class="string">'foo.prototype&nbsp;is&nbsp;an&nbsp;Object:&nbsp;'</span><span>&nbsp;+&nbsp;(foo.prototype&nbsp;</span><span class="keyword">instanceof</span><span>&nbsp;Object)&nbsp;);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="js" style="display: none; ">var foo = function(){};
+alert( 'foo is a Function: ' + (foo instanceof Function) );
+alert( 'foo.prototype is an Object: ' + (foo.prototype instanceof Object) );</pre>
+        
+</div><div id="section_16"><span id="Polymorphism"></span><h4 class="editable">Polymorphism</h4>
+<p>Just like all methods and properties are defined inside the prototype property, different classes can define methods with the same name; methods are scoped to the class in which they're defined. This is only true when the two classes do not hold a parent-child relation (when one does not inherit from the other in a chain of inheritance).</p>
+</div></div></div><div id="section_17"><span id="Notes"></span><h2 class="editable">Notes</h2>
+<p>The techniques presented in this article to implement object-oriented programming are not the only ones that can be used in JavaScript, which is very flexible in terms of how object-oriented programming can be performed.</p>
+<p>Similarly, the techniques shown here do not use any language hacks, nor do they mimic other languages' object theory implementations.</p>
+<p>There are other techniques that make even more advanced object-oriented programming in JavaScript, but those are beyond the scope of this introductory article.</p>
+</div><div id="section_18"><span id="References"></span><h2 class="editable">References</h2>
+<ol> <li>
+<sup id="ref_" class="reference plainlinksneverexpand"><a rel="custom" href="https://developer.mozilla.org/en/JavaScript/Introduction_to_Object-Oriented_JavaScript#endnote_">[]</a></sup> Mozilla. "Core JavaScript 1.5 Guide", http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide</li> <li>
+<sup id="ref_" class="reference plainlinksneverexpand"><a rel="custom" href="https://developer.mozilla.org/en/JavaScript/Introduction_to_Object-Oriented_JavaScript#endnote_">[]</a></sup> wikipedia. "Object-oriented programming", <a class=" external" rel="external" href="http://en.wikipedia.org/wiki/Object-oriented_programming" title="http://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank">http://en.wikipedia.org/wiki/Object-...ed_programming</a></li>
+</ol>
+<div class="originaldocinfo"> <p><span class="lang lang-*"><span id="Original_Document_Information"><strong>Original Document Information</strong></span></span></p> <ul> <li>Author(s): Fernando Trasviña &lt;f_trasvina at hotmail dot com&gt;</li> <li>Copyright Information: © 1998-2005 by individual mozilla.org contributors; content available under a <a class="external" rel="external" href="http://www.mozilla.org/foundation/licensing/website-content.html" title="http://www.mozilla.org/foundation/licensing/website-content.html" target="_blank">Creative Commons license</a></li> </ul>
+</div>
+<p></p></div></div></div>
+            <section class="page-meta">
+                  <section id="page-tags">
+            <h2>Tags <span class="sub">(5)</span></h2>
+              <a href="https://developer.mozilla.org/index.php?title=Special:Tags&pageId=27004" class="disabled" onclick="return false;" id="deki-page-tags-toggleview">Edit tags</a>              <div id="deki-page-tags"><ul class="tags"><li><a href="https://developer.mozilla.org/Special:Tags?tag=Inheritance" title="Inheritance" tagid="2348" class="text">Inheritance</a></li><li><a href="https://developer.mozilla.org/Special:Tags?tag=OOP" title="OOP" tagid="2347" class="text">OOP</a></li><li><a href="https://developer.mozilla.org/Special:Tags?tag=Object" title="Object" tagid="2367" class="text">Object</a></li><li><a href="https://developer.mozilla.org/Special:Tags?tag=Object-Oriented" title="Object-Oriented" tagid="2368" class="text">Object-Oriented</a></li><li><a href="https://developer.mozilla.org/Special:Tags?tag=javascript" title="javascript" tagid="3" class="text">javascript</a></li></ul></div>          </section>
+        
+                  <section id="page-files">
+            <h2>Attachments <span class="sub">(0)</span></h2>
+            <div id="pageFiles"><div class="nofiles">&nbsp;</div></div>            <div id="deki-image-gallery-lite"><table class="table empty" width="100%" cellspacing="0" cellpadding="0" border="0"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><tbody><tr class="bg1"><th class="col1" colspan="3">Images 0</th></tr><tr class="bg2"><td class="col1 empty" colspan="3">No images to display in the gallery.</td></tr></tbody></table></div>            <p class="add"><a title="Attach file" class="disabled ">Attach file</a></p>
+          </section>
+        
+                        
+        </section>
+        </div>
+
+    </article>
+
+    <p class="last-mod hideforedit">
+      Page last modified <a href="https://developer.mozilla.org/index.php?title=en/JavaScript/Introduction_to_Object-Oriented_JavaScript&action=history" title="21:43, 12 Dec 2011">21:43, 12 Dec 2011</a> by <a href="https://developer.mozilla.org/User:jswisher" class="link-user" rel="internal">Janet Swisher</a>    </p>
+
+  </div><!-- /#content-main -->
+
+</div><!-- /.wrap -->
+</section><!-- /#content -->
+
+
+
+<footer id="site-info" class="footer" role="contentinfo">
+<div class="wrap">
+  <div id="legal">
+    <img src="./Introduction to Object-Oriented JavaScript - MDN_files/mdn-logo-tiny.png" alt="" width="42" height="48">
+    <p id="copyright">© 2012 Mozilla Developer Network</p>
+    <p>Content is available under <a href="https://developer.mozilla.org/Project:Copyrights">these licenses</a> • <a href="https://developer.mozilla.org/Project:en/About">About MDN</a> • <a href="http://www.mozilla.org/about/policies/privacy-policy.html">Privacy Policy</a> • <a href="https://developer.mozilla.org/Project:en/Using_the_Mozilla_Developer_Center">Help</a></p>
+  </div>
+      <ul class="user-state signed-out superfish" data-browserid-header-signin-html="/en-US/users/browserid_header_signin_html" style="display: block; ">    <li class="user-signin menu">
+      <form class="browserid" action="https://developer.mozilla.org/en-US/users/browserid_verify" method="POST"><div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="ac89854c083397747240cacb80ac434f"></div>
+        <input id="next" name="next" type="hidden" value="/en/Introduction_to_Object-Oriented_JavaScript">
+        <input required="required" type="hidden" name="assertion" id="id_assertion">
+                        <a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" target="_blank" class="browserid-signin toggle" aria-haspopup="true" title="Sign in with BrowserID">Sign in</a> 
+                <div class="browserid-info sub-menu" aria-hidden="true" style="display: none; ">
+                <h3>What's this?</h3> <p>MDN has switched to <a href="https://browserid.org/" target="_blank" rel="external">BrowserID</a>, a safe and simple way to sign in with just your e-mail address. <a href="http://identity.mozilla.com/post/12950196039/deploying-browserid-at-mozilla" rel="external">Learn more about why Mozilla is using BrowserID</a>.</p> <p><strong>Returning members:</strong> sign in with BrowserID and you'll be connected to your MDN profile (all your information is still here).</p> <p><strong>New members:</strong> sign in with BrowserID first, then you'll be able to set up your new MDN profile.</p>          <p><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" target="_blank" class="browserid-signin" title="Sign in with BrowserID">Sign in</a></p>
+        </div>
+              </form>
+    </li></ul>
+  </div>
+</footer>
+
+
+			
+<div class="ui-msg-wrap" id="MTMessage" style="display: none;">
+	<div class="ui-msg ui-errormsg" id="MTMessageStyle">
+		<div class="ui-msg-opt">
+			<ul>
+				<li><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" class="dismiss" onclick="return MTMessage.Hide();">dismiss message</a></li>
+				<li><a href="https://developer.mozilla.org/en/Introduction_to_Object-Oriented_JavaScript#" class="details" id="MTMessageDetailsLink" onclick="return MTMessage.ShowDetails(this);">view details</a></li>
+			</ul>
+			<div class="ui-msg-autoclose">
+				<span id="MTMessageUnpaused" style="display: inline;">Message will close by itself in <span id="MTMessageTimer"></span> seconds</span>
+				<span id="MTMessagePaused" style="display: none;">Message timer has been stopped</span>
+			</div>
+		</div>
+		<div class="ui-msg-header" id="MTMessageHeader"></div>
+		<div class="ui-msg-desc" id="MTMessageDesc"></div>
+		<div class="ui-msg-desc" id="MTMessageDetails" style="display: none;">
+			<p>Viewing Details:</p>
+		</div>
+	</div>
+</div><script type="text/javascript">$(function() {var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");$.getScript(gaJsHost + "google-analytics.com/ga.js", function() {try {var pageTracker = _gat._getTracker("UA-68075-16");pageTracker._setDomainName(".mindtouch.com");pageTracker._trackPageview();} catch(e) {}});});</script>
+<!-- Served by pm-dekiwiki03.mozilla.org in 0.86 secs. -->
+<!--
+	Verb      Path                                              Time(ms)       API Stats
+	GET       /deki/site/settings                                  19.98       request-time-ms=17; mysql-queries=2; mysql-time-ms=15; cache-ratio=0.00; cache-hit=0; cache-miss=-1; cache-del=0; cache-ins=1;
+	GET       /deki/users/=Anonymous                                8.64       request-time-ms=6; mysql-queries=4; mysql-time-ms=4; cache-ratio=-0.67; cache-hit=2; cache-miss=-5; cache-del=0; cache-ins=5;
+	GET       /deki/license                                         8.24       request-time-ms=3; mysql-queries=2; mysql-time-ms=2; cache-ratio=-0.50; cache-hit=1; cache-miss=-3; cache-del=0; cache-ins=3;
+	GET       /deki/pages/92187/contents                          137.72       request-time-ms=135; mysql-queries=31; mysql-time-ms=43; cache-ratio=2.10; cache-hit=61; cache-miss=-32; cache-del=0; cache-ins=32;
+	GET       /deki/pages/92187                                    44.73       request-time-ms=40; mysql-queries=23; mysql-time-ms=26; cache-ratio=9.67; cache-hit=29; cache-miss=-26; cache-del=0; cache-ins=26;
+	GET       /deki/pages/27004/info                                7.34       request-time-ms=5; mysql-queries=3; mysql-time-ms=3; cache-ratio=-0.67; cache-hit=2; cache-miss=-5; cache-del=0; cache-ins=5;
+	          /deki/pages/27004/security                           21.85       
+	GET       /deki/pages/27004/tags                               10.05       request-time-ms=8; mysql-queries=5; mysql-time-ms=5; cache-ratio=-0.75; cache-hit=3; cache-miss=-7; cache-del=0; cache-ins=7;
+	GET       /deki/site/properties                                17.52       request-time-ms=14; mysql-queries=4; mysql-time-ms=11; cache-ratio=-0.25; cache-hit=1; cache-miss=-5; cache-del=0; cache-ins=5;
+	GET       /deki/site/properties/urn%253Aui.deki.mindtouch.com%2523html.mdn.Transitional    11.53       request-time-ms=9; mysql-queries=3; mysql-time-ms=8; cache-ratio=-0.50; cache-hit=1; cache-miss=-3; cache-del=0; cache-ins=3;
+	GET       /deki/site/nav/=en%252FJavaScript%252FIntroduction%2Bto%2BObject-Oriented%2BJavaScript/full   405.33       request-time-ms=403; mysql-queries=6; mysql-time-ms=399; cache-ratio=-6.00; cache-hit=6; cache-miss=-7; cache-del=0; cache-ins=7;
+	GET       /deki/pages/27004/tags                               10.40       request-time-ms=8; mysql-queries=5; mysql-time-ms=5; cache-ratio=-0.75; cache-hit=3; cache-miss=-7; cache-del=0; cache-ins=7;
+	                                                             =======
+	                                                     Total:   703.35      
+	                                                     Ideal:   692.95      
+-->
+ 
+<div id="popupMessage"></div> <div id="popupMask"></div>
+<div id="menuFiller"></div>
+<div id="bodyHeight"></div>
+
+<script src="./Introduction to Object-Oriented JavaScript - MDN_files/include.js"></script>
+<script src="./Introduction to Object-Oriented JavaScript - MDN_files/jsapi"></script>
+<script src="./Introduction to Object-Oriented JavaScript - MDN_files/javascript.min.js"></script><script src="./Introduction to Object-Oriented JavaScript - MDN_files/saved_resource" type="text/javascript"></script><script src="./Introduction to Object-Oriented JavaScript - MDN_files/default+en.I.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    // If found, wire up the BrowserID sign in button
+    function bindBrowserIDSignin() {
+      $('.browserid-signin').click(function (e) {
+        if ( !$(this).hasClass('toggle') ) {
+          navigator.id.getVerifiedEmail(function(assertion) {
+              if (!assertion) { return; }
+              $('input[name="assertion"]').val(assertion.toString());
+              $('form.browserid').first().submit();
+          });
+          return false;
+        }
+      });
+    }
+    $(document).ready(function(){
+        $('ul.signed-out').hide();
+        $('ul.signed-out').load($('ul.signed-out').attr('data-browserid-header-signin-html'), function() {
+          $('.toggle', $(this)).click(function() {
+            $(this).siblings(".sub-menu").slideToggle(150).removeAttr("aria-hidden");
+            return false;
+          });
+          bindBrowserIDSignin();
+        });
+        $('ul.signed-out').show();
+    });
+  </script>
+
+ 
+<script type="text/javascript">
+//<![CDATA[
+var _tag=new WebTrends();
+_tag.dcsGetId();
+// Add custom parameters here.
+//_tag.DCSext.param_name=param_value;
+_tag.dcsCollect();
+//]]>>
+</script><script type="text/javascript" src="./Introduction to Object-Oriented JavaScript - MDN_files/wtid.js"></script>
+<noscript>
+&lt;div&gt;&lt;img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="https://statse.webtrendslive.com/dcs8yrjuavz5bdaun34r2o8bi_8o8x/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No&amp;amp;WT.tv=8.6.2"/&gt;&lt;/div&gt;
+</noscript>
+<!-- END OF SmartSource Data Collector TAG -->
+
+<script type="text/javascript">/*<![CDATA[*/$(function(){dp.SyntaxHighlighter.HighlightAll('code');});/*]]>*/</script> 
+
+
+</body></html>

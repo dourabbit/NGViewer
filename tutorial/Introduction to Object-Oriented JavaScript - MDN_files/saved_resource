@@ -1,0 +1,10 @@
+if (window['google'] != undefined && window['google']['loader'] != undefined) {
+if (!window['google']['search']) {
+window['google']['search'] = {};
+google.search.Version = '1.0';
+google.search.NoOldNames = true;
+google.search.JSHash = 'd5bfa7bfa86e35ff8d5f01bfd012a255';
+google.search.LoadArgs = 'file\75search\46v\0751\46hl\75en\46output\75nocss%3Dtrue\46nooldnames\75true';
+}
+google.loader.writeLoadTag("script", google.loader.ServiceBase + "/api/search/1.0/d5bfa7bfa86e35ff8d5f01bfd012a255/default+en.I.js", false);
+}

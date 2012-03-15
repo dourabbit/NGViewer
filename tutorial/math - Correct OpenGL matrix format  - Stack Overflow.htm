@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>math - Correct OpenGL matrix format? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+
+    
+    <script type="text/javascript" async="" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/adzerk1_2_4_43,adzerk2_2_17_45"></script><script type="text/javascript" async="" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/ga.js"></script><script type="text/javascript" async="" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/quant.js"></script><script type="text/javascript" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="./math - Correct OpenGL matrix format  - Stack Overflow_files/all.css">
+    
+    <link rel="canonical" href="./math - Correct OpenGL matrix format  - Stack Overflow_files/math - Correct OpenGL matrix format  - Stack Overflow.htm">
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Correct OpenGL matrix format?&#39;" href="http://stackoverflow.com/feeds/question/4360918">
+    <meta name="title" content="math - Correct OpenGL matrix format? - Stack Overflow">
+    <link rel="image_src" href="http://sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:4360918});
+
+            styleCode();
+        });
+    </script>
+
+
+        <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"https://stackauth.com","serverTime":1331521874,"styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers"},"user":{"isAnonymous":true,"fkey":"d99e9b3ed0cd34322112f99a911696e5","inboxUnviewedCount":-1}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"4ed9aa4b8d0e","js/moderator.js":"f57f00dcb1ac","js/full-anon.js":"c3d00036fa7e","js/full.js":"44ceac30f05f","js/wmd.js":"9ad7148077d1","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"9e820382dd06","js/help.js":"fc9fb0517db2","js/tageditor.js":"c1ba807b32aa","js/tageditornew.js":"ab523171ddc9","js/inline-tag-editing.js":"be882e188985","js/revisions.js":"8c6bcd93b7fe","js/suggested-edits.js":"92144b1c12be","js/probes.js":"beb933322ff0"});
+        
+    </script>
+
+<script async="" type="text/javascript" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/full-anon.js"></script><link href="./math - Correct OpenGL matrix format  - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"></head>
+<body class="question-page">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    <span id="hlinks-user">
+                  
+                  </span>
+                  <span id="hlinks-nav">
+                  <a href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f4360918%2fcorrect-opengl-matrix-format">log in</a>
+ <span class="lsep">|</span>
+<a href="http://careers.stackoverflow.com/">careers</a>
+ <span class="lsep">|</span>
+
+                  </span>
+                  <span id="hlinks-custom">
+                  <a href="http://chat.stackoverflow.com/">chat</a>
+ <span class="lsep">|</span>
+<a href="http://meta.stackoverflow.com/">meta</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/about">about</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/faq">faq</a>
+                  </span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <div>
+                        <input autocomplete="off" name="q" class="textbox" placeholder="search" tabindex="1" type="text" maxlength="140" size="28" value="">
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">Stack Overflow</a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <div id="content">
+            
+            
+
+
+<div itemscope="" itemtype="http://schema.org/Article">
+<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+<div id="question-header">
+    <h1 itemprop="name"><a href="./math - Correct OpenGL matrix format  - Stack Overflow_files/math - Correct OpenGL matrix format  - Stack Overflow.htm" class="question-hyperlink">Correct OpenGL matrix format?</a></h1>
+</div>
+<div id="mainbar">
+
+
+<div class="question" id="question" data-questionid="4360918">
+
+    <div class="everyonelovesstackoverflow" id="adzerk1"><a href="http://engine.adzerk.net/redirect/0/9962/10657/8277/4629248edb39470a9f76ba562faa692e/43/1178/15922/634671185637744770/?keywords=math%2copengl%2cmatrix" rel="nofollow" target="_blank" title=""><img src="./math - Correct OpenGL matrix format  - Stack Overflow_files/f9cdce5e2f7042e091a634065d706aee.jpg" title="" alt="" border="0" height="90" width="728"></a></div>
+
+    
+    <table>
+    <tbody><tr>
+    <td class="votecell">
+        
+
+<div class="vote">
+    <input type="hidden" value="4360918">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post">3</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+    <a class="star-off" href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+ 
+    <script type="text/javascript">
+        StackExchange.ready(function () {
+            var shareUrl = 'http%3a%2f%2fstackoverflow.com%2fq%2f4360918';
+            var shareMsg = 'Correct+OpenGL+matrix+format%3f';
+            
+            StackExchange.share.gplus($('#gp-share-4360918'), shareUrl, shareMsg) ;
+            StackExchange.share.facebook($('#fb-share-4360918'), shareUrl, shareMsg);
+            StackExchange.share.twitter($('#twitter-share-4360918'), shareUrl, shareMsg);
+        });
+    </script>
+    <a id="gp-share-4360918" class="gp-share" title="share link to this question on Google+">share [g+]</a>
+    <a id="fb-share-4360918" class="fb-share" title="share link to this question on Facebook">share [fb]</a>
+    <a id="twitter-share-4360918" class="twitter-share" title="share link to this question on Twitter">share [tw]</a>    
+</div>
+
+    </td>
+<td class="postcell">
+<div>          
+    <div class="post-text" itemprop="description">
+        <p>My question simply is: what is the correct format for the Projection and ModelView matrix?</p>
+
+<p>I've been told that the following example matrices are transposed and are not built like OpenGL matrices should be.</p>
+
+<pre><code>ModelView Matrix
+{(1, 0, 0, 0)
+(0, 0.7071068, 0.7071068, 0)
+(0, -0.7071068, 0.7071068, 0)
+(0, -141.4214, -141.4214, 1)}
+
+Projection Matrix
+{(1.931371, 0, 0, 0)
+(0, 2.414213, 0, 0)
+(0, 0, -1.0002, -1)
+(0, 0, -2.0002, 0)}
+</code></pre>
+
+    </div>            
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/math" class="post-tag" title="show questions tagged &#39;math&#39;" rel="tag">math</a> <a href="http://stackoverflow.com/questions/tagged/opengl" class="post-tag" title="show questions tagged &#39;opengl&#39;" rel="tag">opengl</a> <a href="http://stackoverflow.com/questions/tagged/matrix" class="post-tag" title="show questions tagged &#39;matrix&#39;" rel="tag">matrix</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+        <div class="post-menu"><a href="http://stackoverflow.com/q/4360918" title="short permalink to this question" id="link-post-4360918">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/4360918/edit">improve this question</a></div>
+    </td>
+    <td class="post-signature owner">
+    <div class="user-info"><div class="user-action-time">asked <span title="2010-12-05 20:18:19Z" class="relativetime">Dec 5 '10 at 20:18</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/522479/cobra-fast"><div class=""><img src="./math - Correct OpenGL matrix format  - Stack Overflow_files/c3da2ed28ea9b74278ae66594e35e871" alt="" width="32" height="32"></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/522479/cobra-fast">Cobra_Fast</a><br><span class="reputation-score" title="reputation score" dir="ltr">995</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span></div></div>
+        <br class="cbt">
+        <div class="accept-rate accept-answer-link" title="this user has accepted an answer for 30 of 31 eligible questions">97% accept rate</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>    </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-4360918" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div class="was-this-helpful" style="color: rgb(136, 136, 136); ">
+        feedback
+    </div>
+    
+</td>
+</tr>    </tbody></table>    
+</div>
+
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>1 Answer</h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>    
+    </div>    
+
+
+  
+    <a name="4361018"></a>
+    <div id="answer-4361018" class="answer" data-answerid="4361018">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+
+<div class="vote">
+    <input type="hidden" value="4361018">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">4</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+<span class="vote-accepted-on" title="The question owner accepted this as the best answer Dec 5 &#39;10 at 21:19">accepted</span> 
+</div>
+
+        </td>
+
+
+<td class="answercell">
+    <div class="post-text"><p>OpenGL specifies matrices as a one-dimensional array listed in column-major order, ie with elements ordered like this:</p>
+
+<pre><code>m0 m4 m8  m12
+m1 m5 m9  m13
+m2 m6 m10 m14
+m3 m7 m11 m15
+</code></pre>
+
+<p>So if you initialize an array this way, in C or pretty much any other language, the resulting matrix will look like it needs transposing, because C code reads left-to-right first and then top-to-bottom (in other words, like if it were in row-major order):</p>
+
+<pre><code>int mat[16] = {
+    0, 1, 2, 3,
+    4, 5, 6, 7,
+    8, 9, 10, 11,
+    12, 13, 14, 15,
+}
+</code></pre>
+
+<p>By the way, OpenGL has both <a href="http://www.opengl.org/sdk/docs/man/xhtml/glLoadTransposeMatrix.xml" rel="nofollow">glLoadTransposeMatrix</a> and <a href="http://www.opengl.org/sdk/docs/man/xhtml/glMultTransposeMatrix.xml" rel="nofollow">glMultTransposeMatrix</a>, which you can use instead of glLoadMatrix and glMultMatrix, so this shouldn't be a problem.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/4361018" title="short permalink to this answer" id="link-post-4361018">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/4361018/edit">improve this answer</a></div>    </td>
+    <td align="right" class="post-signature">
+<div class="user-info"><div class="user-action-time">edited <a href="http://stackoverflow.com/posts/4361018/revisions" title="show all edits to this post"><span title="2010-12-05 20:50:28Z" class="relativetime">Dec 5 '10 at 20:50</span></a></div><div class="user-gravatar32"></div><div class="user-details"><br></div></div>    </td>
+            
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info"><div class="user-action-time">answered <span title="2010-12-05 20:38:32Z" class="relativetime">Dec 5 '10 at 20:38</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/400127/zecc"><div class=""><img src="./math - Correct OpenGL matrix format  - Stack Overflow_files/3419494228065ac19837d4ceefaa9201" alt="" width="32" height="32"></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/400127/zecc">Zecc</a><br><span class="reputation-score" title="reputation score" dir="ltr">1,156</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span></div></div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-4361018" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-4746201" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">So how can I tell if the matrixes from my question are in column- or row-major order?</span> –&nbsp;<a href="http://stackoverflow.com/users/522479/cobra-fast" title="995 reputation" class="comment-user owner">Cobra_Fast</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(4746201, 4361018)" href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format#comment4746201_4361018"><span title="2010-12-05 20:52:08Z">Dec 5 '10 at 20:52</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-4746257" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">The model-view matrix has non-zero elements in the last row, while the last column read (0, 0, 0, 1). This means it is in row-major order. (As per <a href="http://www.songho.ca/opengl/gl_transform.html#modelview" rel="nofollow">songho.ca/opengl/gl_transform.html#modelview</a> )</span> –&nbsp;<a href="http://stackoverflow.com/users/400127/zecc" title="1156 reputation" class="comment-user">Zecc</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(4746257, 4361018)" href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format#comment4746257_4361018"><span title="2010-12-05 20:59:47Z">Dec 5 '10 at 20:59</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+            
+    <tr id="comment-4746496" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Meanwhile, contrasting the projection matrix with the one in this link - <a href="http://www.songho.ca/opengl/gl_projectionmatrix.html" rel="nofollow">songho.ca/opengl/gl_projectionmatrix.html</a> - it seems it is in column-major order. Please notice I haven't really put much thought into this, though.</span> –&nbsp;<a href="http://stackoverflow.com/users/400127/zecc" title="1156 reputation" class="comment-user">Zecc</a> <span class="comment-date" dir="ltr"><a class="comment-link" onclick="StackExchange.question.highlightComment(4746496, 4361018)" href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format#comment4746496_4361018"><span title="2010-12-05 21:32:47Z">Dec 5 '10 at 21:32</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div class="was-this-helpful" style="color: rgb(0, 0, 0); ">Was this post useful to you? &nbsp;&nbsp;<input style="" class="anon-vote" type="button" value="Yes"> &nbsp;<input style="" class="anon-vote" type="button" value="No"></div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+    <a name="new-answer"></a>
+    <form id="post-form" action="http://stackoverflow.com/questions/4360918/answer/submit" method="post" class="post-form">
+        <h2 class="space">Your Answer</h2>
+
+<script type="text/javascript">
+    StackExchange.ready(function() {
+    
+        initTagRenderer("".split(" "), "".split(" "));
+
+              
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                onDemand: true
+                ,immediatelyShowMarkdownHelp:true
+            });
+            
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">  
+
+    
+    <div class="wmd-container">
+        <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px; "><span style="background-position: 0px -20px; "></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px; "><span style="background-position: -20px -20px; "></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px; "><span style="background-position: -40px -20px; "></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px; "><span style="background-position: -40px -20px; "></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px; "><span style="background-position: -60px -20px; "></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px; "><span style="background-position: -80px -20px; "></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px; "><span style="background-position: -100px -20px; "></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px; "><span style="background-position: -120px -20px; "></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px; "><span style="background-position: -120px -20px; "></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px; "><span style="background-position: -140px -20px; "></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px; "><span style="background-position: -160px -20px; "></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px; "><span style="background-position: -180px -20px; "></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px; "><span style="background-position: -200px -20px; "></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px; "><span style="background-position: -200px -20px; "></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px; "><span style="background-position: -220px -20px; "></span></li></ul></div>
+        <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101"></textarea>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="d99e9b3ed0cd34322112f99a911696e5">
+        <input id="author" name="author" type="text">
+    </div>
+</div>   
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+        <td class="vm open-id-login">
+            <a id="login-link" style="font-size: 200%; margin-left: 30px;" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f4360918%2fcorrect-opengl-matrix-format">log in</a>
+            <script type="text/javascript">
+                StackExchange.ready(function () {
+                    StackExchange.helpers.onClickDraftSave('#login-link');
+                });
+            </script>
+        </td>
+
+    
+        <td class="orcell">
+            <div class="orword">or</div>
+            <div class="orline"></div>
+        </td>
+        <td class="vm">
+            <div>
+                <label for="display-name">Name</label>
+                <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+            </div>
+            <div>
+                <label for="m-address">Email</label>
+                <input id="m-address" name="m-address" type="text" size="40" maxlength="100" value="" tabindex="106">
+                <span class="edit-field-overlay">required, but never shown</span>
+            </div>
+            <div>
+                <label for="home-page">Home Page</label>
+                <input id="home-page" name="home-page" type="text" size="40" maxlength="200" value="" tabindex="107">
+            </div>
+        </td>
+    
+        </tr>
+        </tbody></table>
+    </div>
+               
+        <div class="form-submit cbt"><input id="submit-button" type="submit" value="Post Your Answer" tabindex="110"></div>
+    </form>
+
+
+
+
+        <h2 class="bottom-notice">
+                Not the answer you're looking for? 
+            Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/math" class="post-tag" title="show questions tagged &#39;math&#39;" rel="tag">math</a> <a href="http://stackoverflow.com/questions/tagged/opengl" class="post-tag" title="show questions tagged &#39;opengl&#39;" rel="tag">opengl</a> <a href="http://stackoverflow.com/questions/tagged/matrix" class="post-tag" title="show questions tagged &#39;matrix&#39;" rel="tag">matrix</a> 
+                or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+        </h2>
+</div>
+</div>
+<div id="sidebar">
+
+
+
+    <style type="text/css">
+        .hide-newsletter-loading
+        {
+            visibility: hidden;
+        }
+    </style>
+    <div class="module newuser newuser-greeting" style="">
+        <h4>Hello World!</h4>
+        <div>
+            <p></p><p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p><p></p>
+            <p class="ar"><a href="http://stackoverflow.com/about?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;<a href="http://stackoverflow.com/faq?mnu=1">faq »</a>
+            </p>
+        </div>
+
+
+            <script type="text/javascript">
+                StackExchange.ready(function () {
+                    var newUser = $('.newuser-greeting');
+                    if(!StackExchange.options.user.isAnonymous) {
+                        newUser.removeClass('hide-newsletter-loading');
+                        return;
+                    }
+
+                    var continuingSession = window.sessionStorage && window.sessionStorage['targettedNewsletter'];
+
+                    var matches = /:\/\/([^\/]*)/.exec(document.referrer);
+
+                    if (!continuingSession && (!matches || matches.length != 2)) {
+                        newUser.removeClass('hide-newsletter-loading');
+                    } else {
+                        var domain = continuingSession || matches[1];
+
+                        if (continuingSession || $.inArray(domain, ['www.reddit.com','news.ycombinator.com']) > -1) {
+                            $.ajax({
+                                url: '/newsletter/targetted/ajax',
+                                data: { domain: domain },
+                                success: function (data, status, xhr) {
+                                    $('#newsletter-ad').remove();
+                                    newUser.empty().append($(data));
+                                },
+                                complete: function () {
+                                    newUser.attr('class', '').attr('style', '');
+                                }
+                            });
+
+                            if(!continuingSession && window.sessionStorage) {
+                                window.sessionStorage['targettedNewsletter'] = domain + '-continued';
+                            }
+                        } else {
+                            newUser.removeClass('hide-newsletter-loading');
+                        }
+                    }
+                });
+            </script>
+    </div>
+    <div class="module">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/math" class="post-tag" title="show questions tagged &#39;math&#39;" rel="tag">math</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">7659</span></span><br>
+<a href="http://stackoverflow.com/questions/tagged/opengl" class="post-tag" title="show questions tagged &#39;opengl&#39;" rel="tag">opengl</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">6411</span></span><br>
+<a href="http://stackoverflow.com/questions/tagged/matrix" class="post-tag" title="show questions tagged &#39;matrix&#39;" rel="tag">matrix</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">2494</span></span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left:10px"><p class="label-key" title="2010-12-05 20:18:19Z"><b>1 year ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left:10px"><p class="label-key"><b>832 times</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left:10px"><p class="label-key"><b><a href="http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format?lastactivity" class="lastactivity-link" title="2010-12-05 20:50:28Z">1 year ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+    
+        <script type="text/javascript">
+            var scriptSrc = "http://engine2.adzerk.net/z/8277/adzerk1_2_4_43,adzerk2_2_17_45?keywords=math,opengl,matrix";
+            if (document.referrer) {
+                if (/\?/.test(scriptSrc))
+                    scriptSrc += "&";
+                else
+                    scriptSrc += "?";
+                scriptSrc += "xReferrer=" + document.referrer;
+            }
+            StackExchange.ready(function(){var z = document.createElement("script"); z.type = "text/javascript"; z.async = "true"; z.src = scriptSrc; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);});
+        </script>
+    
+    <div class="everyonelovesstackoverflow" id="adzerk2"><a href="http://engine.adzerk.net/redirect/0/9333/2444/8277/aeee97383c684b25831da593e34efac4/45/1178/14843/634671185637827410/?keywords=math%2copengl%2cmatrix" rel="nofollow" target="_blank" title=""><img src="./math - Correct OpenGL matrix format  - Stack Overflow_files/12f0cc69cd9742faa9c8ee0f7b0d210e.jpg" title="" alt="" border="0" height="250" width="220"></a></div>
+
+    
+    <div id="hireme"> <a href="http://careers.stackoverflow.com/jobs?a=12" class="top" target="_blank"></a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/17326/web-developer-lamp-environment-growing-arsenal-studios?a=ktbFQM8" target="_blank" title="Web Developer - LAMP Environment - Growing &amp; Innovative Company at Arsenal Studios. Click to learn more."> Web Developer - LAMP Environment - Growing &amp; Innovative…<br> <span class="company">Arsenal Studios</span> <span class="location">Pittsburgh, PA; Cleveland, OH;…</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/17750/gameplay-engineer-jet-set-games?a=kYfk5dS" target="_blank" title="Gameplay Engineer at Jet Set Games. Click to learn more."> Gameplay Engineer<br> <span class="company">Jet Set Games</span> <span class="location">Las Vegas, NV</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/17679/lead-engineer-cogo-labs?a=kT2RLsA" target="_blank" title="Lead Engineer at Cogo Labs. Click to learn more."> Lead Engineer<br> <span class="company">Cogo Labs</span> <span class="location">Cambridge, MA</span> </a> </li> </ul> <img alt="" class="impression" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/ktbFQM8-kYfk5dS-kT2RLsA-12" style="display:none"></div>
+
+      
+
+    <div class="module">
+    <h4 id="h-related">Related</h4>
+    <div class="related">
+    <div class="spacer">
+<a href="http://stackoverflow.com/questions/114011/how-do-i-get-the-current-size-of-a-matrix-stack-in-opengl" class="question-hyperlink">How do I get the current size of a matrix stack in OpenGL?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1823081/matrix-classes-directx-opengl" class="question-hyperlink">Matrix classes Directx &amp; OpenGL</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2288249/is-there-a-matrix-math-library-that-is-good-to-use-alongside-opengl-to-keep-trac" class="question-hyperlink">Is there a matrix math library that is good to use alongside OpenGL to keep track of primitive co-ordinates for collision detection</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2568023/matrix-image-processing-in-opengl-ce" class="question-hyperlink">matrix image processing in OpenGL CE</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2626219/setting-modelview-matrix-using-rotate-translate-etc-vs-setting-manual-matrix" class="question-hyperlink">Setting ModelView matrix using rotate, translate, etc.. vs setting manual matrix</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3349575/opengl-matrix-rotation-quaternions" class="question-hyperlink">opengl matrix rotation quaternions</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3528114/whats-wrong-with-my-project-and-unproject-functions" class="question-hyperlink">What's wrong with my project and unproject functions?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3537303/opengl-rotation-vector-from-matrix" class="question-hyperlink">OpenGL rotation vector from matrix</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3765028/opengl-and-xna-matrix-differences" class="question-hyperlink">OpenGL and XNA Matrix differences</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3982418/how-to-represent-a-4x4-matrix-rotation" class="question-hyperlink">How to represent a 4x4 matrix rotation?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4177222/problem-with-cml-and-opengl" class="question-hyperlink">Problem with CML and OpenGL</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4373360/opengl-world-to-object-coordinate-mapping-inverse-matrix" class="question-hyperlink">OpenGL ,World to Object coordinate mapping ? (inverse matrix)</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4569985/convert-4-corners-into-a-matrix-for-opengl-to-direct3d-sprite-conversion" class="question-hyperlink">Convert 4 corners into a matrix for OpenGL to Direct3D sprite conversion</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4893040/compact-representation-of-opengl-modelview-matrix-4x4" class="question-hyperlink">Compact representation of OpenGL modelview matrix 4x4</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4893547/getting-and-setting-pitch-yaw-roll-from-to-opengl-modelview-matrix" class="question-hyperlink">Getting and Setting Pitch Yaw Roll from/to OpenGL modelview matrix</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5900864/d-opengl-custom-vs-fixed-pipeline-matrix-weirdness" class="question-hyperlink">d opengl custom vs fixed-pipeline matrix weirdness</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/6092606/how-to-get-yaw-pitch-and-roll-from-a-matrix" class="question-hyperlink">How to get Yaw, Pitch, and Roll from a Matrix?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/6139977/haskell-retrieve-opengl-matrix-glgetfloatv" class="question-hyperlink">Haskell retrieve opengl matrix (glGetFloatv)</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/6870469/convert-opengl-4x4-matrix-to-rotation-angles" class="question-hyperlink">Convert OpenGL 4x4 matrix to rotation angles</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7199291/left-handed-calculations-in-opengl" class="question-hyperlink">Left-handed calculations in OpenGL</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/7692988/opengl-math-projecting-screen-space-to-world-space-coords-solved" class="question-hyperlink">OpenGL Math - Projecting Screen space to World space coords [SOLVED]</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8347844/opengl-matrixmodes" class="question-hyperlink">OpenGL MatrixModes</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8734744/matrix-quaternion-woes" class="question-hyperlink">matrix/quaternion woes</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/8787547/glm-matrix-multiplication-and-opengl-glsl" class="question-hyperlink">GLM matrix multiplication and OpenGL GLSL</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/9092010/how-to-update-opengl-modelview-matrix-with-my-own-4x4-matrix" class="question-hyperlink">How to update opengl modelview matrix with my own 4x4 matrix?</a>
+</div>
+
+    </div>
+    </div>
+</div>
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackoverflow.com/feeds/question/4360918" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+<script type="text/javascript">
+StackExchange.ready(function(){$.get('/posts/4360918/ivc/bd4e');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/4360918/ivc/bd4e" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang"></div></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <a href="http://stackoverflow.com/about">about</a> |
+                <a href="http://stackoverflow.com/faq">faq</a> |
+                <a href="http://blog.stackexchange.com/?blb=1">blog</a> |
+                    <a href="http://chat.stackoverflow.com/">chat</a> |
+                <a href="http://data.stackexchange.com/">data</a> |
+                <a href="http://blog.stackoverflow.com/category/podcasts/">podcast</a> |
+                <a href="http://shop.stackexchange.com/">shop</a> |
+                <a href="http://stackexchange.com/legal">legal</a> |
+                <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a> |
+
+                <a onclick="StackExchange.switchMobile(&#39;on&#39;, &#39;/questions/4360918/correct-opengl-matrix-format&#39;)">mobile</a> |
+
+                <b><a href="mailto:team@stackoverflow.com">contact us</a></b>
+                  | <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                <div id="footer-sites">
+                    
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackoverflow.com/">stackoverflow.com</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackapps.com/">api/apps</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://careers.stackoverflow.com/">careers</a>&nbsp; 
+                        <span style="color:#E8272C;font-size:140%">■</span>&nbsp;<a href="http://serverfault.com/">serverfault.com</a>&nbsp; 
+                        <span style="color:#00AFEF;font-size:140%">■</span>&nbsp;<a href="http://superuser.com/">superuser.com</a>&nbsp; 
+                        <span style="color:#969696;font-size:140%">■</span>&nbsp;<a href="http://meta.stackoverflow.com/">meta</a>&nbsp; 
+                        <span style="color:#46937D;font-size:140%">■</span>&nbsp;<a href="http://area51.stackexchange.com/">area&nbsp;51</a>&nbsp; 
+                        <span style="color:#C0D0DC;font-size:140%">■</span>&nbsp;<a href="http://webapps.stackexchange.com/">webapps</a>&nbsp; 
+                        <span style="color:#000000;font-size:140%">■</span>&nbsp;<a href="http://gaming.stackexchange.com/">gaming</a>&nbsp; 
+                        <span style="color:#dd4814;font-size:140%">■</span>&nbsp;<a href="http://askubuntu.com/">ubuntu</a>&nbsp; 
+                        <span style="color:#9ce4fe;font-size:140%">■</span>&nbsp;<a href="http://webmasters.stackexchange.com/">webmasters</a>&nbsp; 
+                        <span style="color:#cf4d3f;font-size:140%">■</span>&nbsp;<a href="http://cooking.stackexchange.com/">cooking</a>&nbsp; 
+                        <span style="color:#f4f28d;font-size:140%">■</span>&nbsp;<a href="http://gamedev.stackexchange.com/">game development</a>&nbsp; 
+                        <span style="color:#0f3559;font-size:140%">■</span>&nbsp;<a href="http://math.stackexchange.com/">math</a>&nbsp; 
+                        <span style="color:#f2f2f2;font-size:140%">■</span>&nbsp;<a href="http://photo.stackexchange.com/">photography</a>&nbsp; 
+                        <span style="color:#037187;font-size:140%">■</span>&nbsp;<a href="http://stats.stackexchange.com/">stats</a>&nbsp; 
+                        <span style="color:#f1e7cc;font-size:140%">■</span>&nbsp;<a href="http://tex.stackexchange.com/">tex</a>&nbsp; 
+                        <span style="color:#e1cdae;font-size:140%">■</span>&nbsp;<a href="http://english.stackexchange.com/">english</a>&nbsp; 
+                        <span style="color:#a2d9f6;font-size:140%">■</span>&nbsp;<a href="http://cstheory.stackexchange.com/">theoretical cs</a>&nbsp; 
+                        <span style="color:#1b3e6c;font-size:140%">■</span>&nbsp;<a href="http://programmers.stackexchange.com/">programmers</a>&nbsp; 
+                        <span style="color:#293a5d;font-size:140%">■</span>&nbsp;<a href="http://unix.stackexchange.com/">unix</a>&nbsp;
+                        <span style="color:#bec0cb;font-size:140%">■</span>&nbsp;<a href="http://apple.stackexchange.com/">apple</a>&nbsp;
+                        <span style="color:#939185;font-size:140%">■</span>&nbsp;<a href="http://wordpress.stackexchange.com/">wordpress</a>&nbsp;
+                        <span style="color:#ebf5f5;font-size:140%">■</span>&nbsp;<a href="http://physics.stackexchange.com/">physics</a>&nbsp;
+                        <span style="color:#4176ab;font-size:140%">■</span>&nbsp;<a href="http://diy.stackexchange.com/">home&nbsp;improvement</a>&nbsp;
+                        <span style="color:#d1d8d7;font-size:140%">■</span>&nbsp;<a href="http://gis.stackexchange.com/">gis</a>&nbsp;
+                        <span style="color:#e5e2d3;font-size:140%">■</span>&nbsp;<a href="http://electronics.stackexchange.com/">electronics</a>&nbsp;
+                        <span style="color:#a4c639;font-size:140%">■</span>&nbsp;<a href="http://android.stackexchange.com/">android</a>&nbsp;
+                        <span style="color:#2e4e60;font-size:140%">■</span>&nbsp;<a href="http://security.stackexchange.com/">security</a>&nbsp;
+                        <span style="color:#45bcb5;font-size:140%">■</span>&nbsp;<a href="http://bicycles.stackexchange.com/">bicycles</a>&nbsp;
+                        <span style="color:#00adee;font-size:140%">■</span>&nbsp;<a href="http://dba.stackexchange.com/">dba</a>&nbsp;
+                        <span style="color:#2edaf0;font-size:140%">■</span>&nbsp;<a href="http://drupal.stackexchange.com/">drupal</a>&nbsp;
+                        <span style="color:#213951;font-size:140%">■</span>&nbsp;<a href="http://sharepoint.stackexchange.com/">sharepoint</a>&nbsp;
+                        <span style="color:#73abb3;font-size:140%">■</span>&nbsp;<a href="http://scifi.stackexchange.com/">scifi &amp; fantasy</a>&nbsp;
+                        <span style="color:#23629F;font-size:140%">■</span>&nbsp;<a href="http://ux.stackexchange.com/">user experience</a>&nbsp;
+                </div>
+            </div>
+            <div id="footer-flair">
+                <a class="peer1" href="http://www.peer1.com/stackoverflow"></a>  
+	            <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a>
+                <div id="svnrev">rev 2012.3.11.1583</div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2012 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            
+
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="./math - Correct OpenGL matrix format  - Stack Overflow_files/read.htm"></iframe></div>
+    
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);
+        _gaq.push(['_setCustomVar', 1, 'tags', '|math|opengl|matrix|']); 
+_gaq.push(['_trackPageview']);
+    var _qevents = _qevents || [];
+    (function(){
+        var s=document.getElementsByTagName('script')[0];
+        var ga=document.createElement('script');
+        ga.type='text/javascript';
+        ga.async=true;
+        ga.src='http://www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(ga,s);
+        var sc=document.createElement('script');
+        sc.type='text/javascript';
+        sc.async=true;
+        sc.src='http://edge.quantserve.com/quant.js'; 
+        s.parentNode.insertBefore(sc,s);
+    })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>    
+    
+    
+    
+
+</body></html>

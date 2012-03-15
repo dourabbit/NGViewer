@@ -1,0 +1,218 @@
+
+<!-- saved from url=(0082)http://www.coolpage.com/developer/javascript/Correct%20OOP%20for%20Javascript.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Correct OOP for Javascript</title>
+		<style type="text/css">
+			.code {font:10pt monospace;}
+			span.code {font:italic 10pt monospace;}
+		</style>
+	</head>
+	<body><div style="float:right; width:20%; border:solid 1px; margin:3px 2% 3px 2%; padding:3px 2% 3px 2%">
+			<p>It is possible in Javascript (ECMAScript) to do classical single inheritance nested to any depth, without any caveats.</p>
+
+			<p>This article concisely explores the mechanism in depth, including flaws in other approaches, internal Javascript algorithms, proper OOP data encapsulation with default constructors, and an optimized inheritance declaration syntax with both Object and Function prototype convenience methods.</p>
+		</div>
+
+		<a href="http://www.coolpage.com/">
+			<img src="./Correct OOP for Javascript_files/3Dize_28_wht.gif" style="float:left" alt="3Dize, Inc. logo" title="3Dize, Inc. logo" width="61" height="28" border="0">
+		</a>
+		<h1 style="text-align:center">Correct OOP for Javascript</h1>
+
+		<p style="text-align:center">by Shelby H. Moore III</p>
+
+		<p style="text-align:center">
+			Created: Jan. 30, 2006<br>
+			Updated: Feb. 16, 2006
+		</p>
+
+		<h2>Incorrect</h2>
+
+		<p>Among the <a href="http://www.google.com/search?hl=en&q=javascript+inheritance" target="_blank">numerous articles</a> on the topic of inheritance and OOP (Object Oriented Programming) using Javascript, many of them share a fundamental flaw.</p>
+
+		<p>For example, let's analyze the the first source code example in the <a href="http://phrogz.net/JS/Classes/OOPinJS2.html" target="_blank">page authored by Gavin Kistner</a>.  Note, as of Jan 2006, Gavin's page is linked prominently from the <a href="http://developer.mozilla.org/en/docs/JavaScript" target="_blank">main Mozilla Developer Documentation page for Javascript</a>.</p>
+
+		<p>To prove this fundamental flaw, simply add the following example code to Gavin's first example:</p>
+
+		<pre class="code">	var myPet2 = new Cat('Felix2');
+	alert('myPet2 is '+myPet2);            // results in 'myPet is [Cat "Felix2"]'
+	myPet2.haveABaby();                    // calls a method inherited from Mammal
+	alert(myPet2.offspring.length);        // shows that the cat has <b>two</b> babies now
+	alert(myPet2.offspring[1]);            // results in '[Mammal "Baby Felix2"]'</pre>
+
+		<p>Note that <span class="code">myPet2</span> then reports that it has <b>two</b> <span class="code">offspring</span> (babies), but it should only have one.  The reason is because:</p>
+
+		<pre class="code">	Cat.prototype = new Mammal();</pre>
+
+		<p>places a single instance of <span class="code">Mammal</span> in the prototype chain of <span class="code">Cat</span>.  Thus, any instances of <span class="code">Cat</span> will modify the same single instance <span class="code">offspring</span> property in <span class="code">Mammal</span>.  The parent class's instance members become prototype members, which are shared by all instances.</p>
+
+		<h2>Correct</h2>
+
+		<p>The fix to this flaw employs the "masking effect" of the order in which Javascript searches for elements (properties and methods) of an object.  When resolving <span class="code">object.identifier</span>, where <span class="code">object.identifier</span> is a reference to a Javascript data type (e.g. <span class="code">Function</span>, <span class="code">Object</span>, <span class="code">Number</span>, or <span class="code">String</span>), then Javascript does the equivalent of:</p>
+
+		<pre class="code">	function resolve( identifier, object )
+	{
+		for( var element in object )
+		{
+			if( element == identifier )
+			{
+				return object.element;
+			}
+		}
+		if( object.constructor.prototype != null )
+		{
+			return resolve( identifier, object.constructor.prototype )
+		}
+		return "undefined";
+	}</pre>
+
+		<p>Thus, if <span class="code">identifier</span> exists in the child class, then it will "mask" any duplicate in the prototype chain.  Thus, an obvious "bandaid" to the Gavin's example is to add an <span class="code">offspring</span> property to <span class="code">Cat</span>:</p>
+
+		<pre class="code">	function Cat(name){
+		this.name=name;
+		this.offspring=[];
+	}</pre>
+
+		<p>But this defeats the purpose of inheritance.  If we need to know the internal datastructure of <span class="code">Mammal</span> (the parent class) in order to implement <span class="code">Cat</span> (the child class), then we don't have data encapsulation and thus we don't have OOP (Object Oriented Programming).  Also note that <span class="code">name</span> argument of the constructor of <span class="code">Cat</span> is not passed to <span class="code">Mammal</span>'s constructor.  This violates the data encapsulation of constructor of <span class="code">Mammal</span>, as it assumes the constructor does nothing more than assignment to the <span class="code">name</span> property on construction.</p>
+
+		<p><a href="http://fm.dept-z.com/index.asp?get=/Resources/OOP_with_ECMAScript/Inheritance" target="_blank">Others have pointed the way</a> to a generalized solution, which maintains data encapsulation, which is also mentioned in Mozilla's Javascript documentation for <a href="http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Function:call" target="_blank">Function.call</a> and <a href="http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Function:apply" target="_blank">Function.apply</a>:</p>
+
+		<pre class="code">	function Cat( name )
+	{
+		Mammal.call( this, name );
+	}</pre>
+
+		<p>The above code is calling the <span class="code">Mammal</span> constructor function and executing it in the scope of (<span class="code">this</span> is) the new <span class="code">Cat</span> object, which creates all elements of <span class="code">Mammal</span> in <span class="code">Cat</span> object.</p>
+
+		<h2>Details</h2>
+
+		<p>In addition to executing the parent's constructor in the scope of the object of the child's constructor, we also have to include the parent's prototype in the child's prototype hierarchy:</p>
+
+		<pre class="code">	Cat.prototype = new Mammal();</pre>
+
+		<p> However, <span class="code">Mammal</span> expects a <span class="code">name</span> argument. Depending on what the parent's constructor does, it might generate errors if the expected arguments are not provided.  We could solve this either by passing dummy argument(s) and modifying the parent constructor to not accept <span class="code">typeof() == "undefined"</span> argument(s), or by modifying the parent constructor to handle <span class="code">typeof() == "undefined"</span> argument(s). Thus, we provide the equivalent of a default constructor:</p>
+
+		<pre class="code">	function Mammal(name){
+		if( typeof( name ) == "undefined" )
+		{
+			name = "";
+		}
+		this.name=name;
+		this.offspring=[];
+	}</pre>
+
+		<p>By default, Javascript sets the prototype of the child constructor to an empty <span class="code">Object</span>, but with the child's constructor:</p>
+
+		<pre class="code">	Cat.prototype = new Object();
+	Cat.prototype.constructor = Cat;</pre>
+
+		<p>When an object of the child's constructor is created, Javascript does the equivalent of:</p>
+
+		
+		<pre class="code">	var object = new Cat();
+	object.constructor = Cat.prototype.constructor;</pre>
+
+		<p>Yet when assigning an object to a <span class="code">prototype</span>, Javascript does the equivalent of:</p>
+
+		<pre class="code">	var object = new Mammal();
+	Cat.prototype = object;
+	Cat.prototype.constructor = object.constructor;</pre>
+
+		<p>Thus, it is important to insure that the child constructor's <span class="code">prototype.constructor</span> is set to the child constructor:</p>
+
+		<pre class="code">	Cat.prototype = new Mammal();
+	Cat.prototype.constructor = Cat;</pre>
+
+		<h2>Improved</h2>
+
+		<p>The execution of the parent's constructor in the scope of the object of the child's constructor can be encapsulated by adding a convenience method to the <span class="code">Object.prototype</span>:</p>
+
+		<pre class="code">	Object.prototype.Inherits = function( parent )
+	{
+		// Apply parent's constructor to this object
+		if( arguments.length &gt; 1 )
+		{
+			// Note: 'arguments' is an Object, not an Array
+			parent.apply( this, Array.prototype.slice.call( arguments, 1 ) );
+		}
+		else
+		{
+			parent.call( this );
+		}
+	}
+
+	Cat.prototype = new Mammal();
+	Cat.prototype.constructor = Cat;
+	function Cat( name )
+	{
+		this.Inherits( Mammal, name );
+	}</pre>
+
+	<p>And the prototype inheritance can be encapsulated by adding a convenience method to the <span class="code">Function.prototype</span>:</p>
+	
+		<pre class="code">	Function.prototype.Inherits = function( parent )
+	{
+		this.prototype = new parent();
+		this.prototype.constructor = this;
+	}
+
+	Cat.Inherits( Mammal );
+	function Cat( name )
+	{
+		this.Inherits( Mammal, name );
+	}</pre>
+
+		<h2>Summary</h2>
+
+		<p>Simply declare the following methods once:</p>
+
+		<pre class="code">	Object.prototype.Inherits = function( parent )
+	{
+		if( arguments.length &gt; 1 )
+		{
+			parent.apply( this, Array.prototype.slice.call( arguments, 1 ) );
+		}
+		else
+		{
+			parent.call( this );
+		}
+	}
+
+	Function.prototype.Inherits = function( parent )
+	{
+		this.prototype = new parent();
+		this.prototype.constructor = this;
+	}</pre>
+
+	<p>Then declare inheritance easily:</p>
+	
+		<pre class="code">	Cat.Inherits( Mammal );
+	function Cat( name )
+	{
+		this.Inherits( Mammal, name );
+	}
+
+	ColoredCat.Inherits( Cat );
+	function ColoredCat( name, color )
+	{
+		this.Inherits( Cat, name );
+	}
+
+	Lion.Inherits( ColoredCat );
+	function Lion( name )
+	{
+		this.Inherits( ColoredCat, name, "gold" );
+	}</pre>
+
+	<p>And don't forget to implement a default constructor within each constructor function, by handling input arguments whose typeof() is "undefined".</p>
+
+		<p>
+			<br>
+			Copyright (c) 2006, Shelby H. Moore III.<br>
+			All Rights Reserved.<br>
+			Free license granted to reprint this page in it's entirety.<br>
+			Free license granted to quote portions of this page, with an appropriate link or reference to this original copy.<br>
+			Free license granted to copy the algorithms on this page without restriction.
+		</p>
+	
+
+</body></html>

@@ -1,20 +1,28 @@
 var mvMatrix = mat4.create();
-var mvMatrixStack = [];
+var modelMat = mat4.create();
+var viewMat = mat4.create();
+mat4.identity(modelMat);
+mat4.identity(viewMat);
+
+var matrixStack = [];
 var pMatrix = mat4.create();
 
 
-function mvPushMatrix() {
+function pushMatrix() {
     var copy = mat4.create();
-    mat4.set(mvMatrix, copy);
-    mvMatrixStack.push(copy);
+    //mat4.multiply(modelMat, viewMat, mvMatrix);
+    mat4.set(modelMat, copy);
+    matrixStack.push(copy);
 }
 
-function mvPopMatrix() {
-    if (mvMatrixStack.length == 0) {
+function popMatrix() {
+    if (matrixStack.length == 0) {
         throw "Invalid popMatrix!";
     }
-    mvMatrix = mvMatrixStack.pop();
+    modelMat = matrixStack.pop();
 }
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
 }
+
+

@@ -27,7 +27,8 @@ var aniRenderer = (function () {
         gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
 
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
-        shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+        shaderProgram.mMatrixUniform = gl.getUniformLocation(shaderProgram, "uMMatrix");
+        shaderProgram.vMatrixUniform = gl.getUniformLocation(shaderProgram, "uVMatrix");
     }
     cls.prototype.getShader = function (gl, sh, type) {
 

@@ -4,14 +4,30 @@
 <title>Learning WebGL &mdash; lesson 4</title>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+
+<script type="text/javascript" src="core/Math.js"></script>
+<script type="text/javascript" src="core/Vector3.js"></script>
+<script type="text/javascript" src="core/Matrix3.js"></script>
+<script type="text/javascript" src="core/Matrix4.js"></script>
+<script type="text/javascript" src="core/Quaternion.js"></script>
+<script type="text/javascript" src="core/NGViewer.js"></script>
+
+<script type="text/javascript" src="core/object3D.js"></script>
+<script type="text/javascript" src="core/Camera.js"></script>
+<script type="text/javascript" src="core/Clock.js"></script>
+<script type="text/javascript" src="core/Joint.js"></script>
+
+<script type="text/javascript" src="sysLib/glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
 <script type="text/javascript" src="Stats.js"></script>
 <script type="text/javascript" src="renderLib/baseShader.js"></script>
 <script type="text/javascript" src="renderLib/staticHelperFunc.js"></script>
-<script type="text/javascript" src="sysLib/joint.js"></script>
+
+<script type="text/javascript" src="sysLib/Controls.js"></script>
 <script type="text/javascript" src="sysLib/aniReader.js"></script>
 <script type="text/javascript" src="sysLib/helperFunc.js"></script>
+
+<script type="text/javascript" src="core/NGViewer.js"></script>
 <!--<script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
 
@@ -38,7 +54,7 @@
 </script>-->
 
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 
     var gl;
     var aniRender = new aniRenderer();
@@ -54,52 +70,155 @@
         }
     }
 
-    var bone;
+    var joint;
+    var test;
+    var aniParams;
+    var asfData;
     function initSys() {
-
-        bone = new joint(null);
-        var test = new joint(null);
+        
+		var aniParams ={name:"root",position: new Vector3(), rotation:new Vector3()};
+        joint = new Joint(aniParams);
+        aniParams ={name:"Joint1",position: new Vector3(0,1,0), rotation:new Vector3(0,0,0)};
+        test = new Joint(aniParams);
+        joint.children.push(test);
+        test.parent = joint;
         var reader = new aniReader();
-        reader.loadObj('./08.asf');
+        asfData = reader.loadObj('./08.asf');
         reader.loadObj('./08_04.amc');
     }
 
 
     var rPyramid = 0;
 
+	//Cam start
+	/*
+	var camMatrix = new NGViewer.Math.Matrix4();
+	var camPos=new Vector3();
+	var camTarget = new Vector3();
+	var camQuat;
+	function keyDown(e){
+		switch(e.keyCode){
+			case 65: //a
+				camPos.x-=0.1;
+				break;
+			case 68: //d
+				camPos.x+=0.1;
+				break;
+			case 87://w
+				camPos.z-=0.1;
+				break;
+			case 83://s
+				camPos.z+=0.1;
+				break;
+			default:
+				break;
+			
+		}
+	
+		var position = [0,0,0];
+		camPos.flattenToArray(position);
+		mat4.lookAt(position,[0,0,0],[0,1,0],viewMat);
+
+		camTarget = new Vector3(0,0,0);//Vector3.add( camPos,new Math3D.Vector3(0,0,-1))
+		camMatrix.lookAt(camPos,camTarget, new Math3D.Vector3(0,1,0));
+		camMatrix.flattenToArray(viewMat);
+		//mat4.translate(viewMat,camPos);
+		//mat4.inverse(viewMat,viewMat);
+	};
+	*/
+	//Cam end
+	var viewMat;
     function drawScene() {
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.identity(pMatrix);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
-        mat4.identity(mvMatrix);
+        mat4.identity(modelMat);
+        //mat4.translate(mvMatrix, [-1.5, 0.0, -8.0]);
+        
+        
+        //mat4.identity(modelMat);
+        //mat4.translate(modelMat, [-1.5, 0.0, -8.0]);
+        //mat4.translate(modelMat, [0.0, 0.0, 0.0]);
+        //mat4.rotate(modelMat, degToRad(rPyramid), [0, 1, 0]);
+        //pushMatrix();
+        //mat4.rotate(modelMat, degToRad(rPyramid), [0, 1, 0]);
+        var camPos = camera.getPos();
+        var camTarget = Vector3.add(camPos,camera.getDirection());
+        camera.viewMatrix.lookAt(camPos,camTarget, new Vector3(0,1,0));
+        camera.viewMatrix.flattenToArray(viewMat);
+        //joint.worldMatrix.flattenToArray(modelMat);
+        //joint.draw(modelMat, viewMat, pMatrix, shaderProgram);
+        
+		var rotY = degToRad(rPyramid);
+		aniParams ={name:"root",position: new Vector3(0,0,0), 
+				rotation: new Vector3(0,45,0)};
+		console.log(rotY);
+		//console.log(rPyramid);
 
-        mat4.translate(mvMatrix, [-1.5, 0.0, -8.0]);
+		joint.setParams(aniParams);
+        
+		joint.update();
+        joint.drawSkeleton(joint,viewMat,pMatrix,shaderProgram);
+        
+		//popMatrix();
 
-        mat4.rotate(mvMatrix, degToRad(rPyramid), [0, 1, 0]);
-        bone.draw(mvMatrix, null, pMatrix, shaderProgram);
+		
+		//pushMatrix();
+		mat4.identity(modelMat);
+        mat4.translate(modelMat, [0, 3.0, 0.0]);
+        mat4.rotate(modelMat, rotY, [0, 1, 0]);
+        test.draw(modelMat, viewMat, pMatrix, shaderProgram);
+		//popMatrix();
+		
+		/*
+		pushMatrix();
+        mat4.translate(modelMat, [2, 0.0, 0]);
+        //mat4.rotate(modelMat, degToRad(rPyramid), [0, 1, 0]);
+        test.draw(modelMat, viewMat, pMatrix, shaderProgram);
+		popMatrix();
+		
+		pushMatrix();
+        mat4.translate(modelMat, [-4, 0.0, 0]);
+        //mat4.rotate(modelMat, degToRad(rPyramid), [0, 1, 0]);
+        test.draw(modelMat, viewMat, pMatrix, shaderProgram);
+        popMatrix();
+
+        pushMatrix();
+        mat4.translate(modelMat, [4, 0.0, 0]);
+        //mat4.rotate(modelMat, degToRad(rPyramid), [0, 1, 0]);
+        test.draw(modelMat, viewMat, pMatrix, shaderProgram);
+        popMatrix();
+        */
     }
 
 
     var lastTime = 0;
-
+	var clock = new Clock();
     function animate() {
+		
         var timeNow = new Date().getTime();
         if (lastTime != 0) {
             var elapsed = timeNow - lastTime;
 
-            rPyramid += (90 * elapsed) / 1000.0;
+            rPyramid += (90 * elapsed) / 100.0;
             //rCube -= (75 * elapsed) / 1000.0;
         }
         lastTime = timeNow;
+		
+        //var deltaTime = clock.getDelta();
+        //rPyramid += (90008* deltaTime) / 1000.0;
     }
 
 
     function tick() {
+    	var deltaTime = clock.getDelta();
+    	
         requestAnimFrame(tick);
         drawScene();
         animate();
+        control.update(deltaTime);
     }
     function setStats() {
 
@@ -119,19 +238,30 @@
         }, 1000 / 60);
     }
 
+
+    var camera;
+    var control;
     function webGLStart() {
         var canvas = document.getElementById("aniFrame");
+        
         initGL(canvas);
         aniRender.initShaders()
         initSys();
-
+		var camParams={Fov:45, Near:0.1,Far:100.0,
+						Name:"Persp",AspectRatio:1.0,IsPersp:true};
+		camera = new Camera(camParams);
+    	control = new Controls(camera);
+        
+        //????????????????????
+        //window.addEventListener('keydown',keyDown,true);
+        
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
         setStats();
         tick();
     }
 
-</script>
+--></script>
 
 
 </head>

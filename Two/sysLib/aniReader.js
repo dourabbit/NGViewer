@@ -7,13 +7,15 @@ var aniReader = (function () {
 
     };
     cls.prototype.loadObj = function(url){
+    	var result;
     	var req = new XMLHttpRequest();
 		if(url.indexOf(".asf")!=-1) 
-		        req.onreadystatechange = function () { cls.prototype.processLoadObj(req)};
+		        req.onreadystatechange = function () { result=cls.prototype.processLoadObj(req);};
 		else if(url.indexOf(".amc")!=-1)
-				req.onreadystatechange = function () { cls.prototype.processLoadAMC(req)};
+				req.onreadystatechange = function () { result=cls.prototype.processLoadAMC(req);};
         req.open("GET", url, true);
         req.send(null);
+        return result;
     };
     cls.prototype.parseASF = function(text){
     	result=[];
@@ -86,7 +88,7 @@ var aniReader = (function () {
     		}
     		//document.write(result);
     	}
-    	
+    	return result;
     };
     cls.prototype.readHierarchy = function(linesStr){
     	var nodes = linesStr[0].split(" ");
@@ -322,28 +324,33 @@ var aniReader = (function () {
     				//document.write(animData);
     		}
     	}
+    	return animData;
 
-    }
+    };
     
     cls.prototype.processLoadObj = function(req)
     {
+    	var result;
         if (req.readyState == 4) {
         	var text = req.responseText;
         	var args = text.match(/id\s+(\d+)/g);
         	//var boneNum = args[args.length-1].split(' ')[1];
     		
-        	cls.prototype.parseASF(text);
+        	result =cls.prototype.parseASF(text);
         	
         }
-    }
+        return result;
+    };
     cls.prototype.processLoadAMC = function(req)
 	{
+    	var result;
 		if (req.readyState == 4) {
 			var text = req.responseText;
-			cls.prototype.parseAMC(text);
+			result = cls.prototype.parseAMC(text);
 			//cls.prototype.printAnimData();
 		}
-	}
+		return result;
+	};
     
 
     cls.prototype.printAnimData = function(){
@@ -355,7 +362,7 @@ var aniReader = (function () {
     		document.write(animData[String(i)]['frameNum']+"\n");
     	}
     	//chengfu changed
-    }
+    };
 
     return cls;
 })();

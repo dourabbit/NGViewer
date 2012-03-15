@@ -1,0 +1,24 @@
+
+<!-- saved from url=(0178)https://stackauth.com/auth/global/read?request=9XI5ggo7f9eZP8LQBx0k7qCDJjBQSTGx51%2FZmZ7v3NV11Sz6TziE2D2uv%2BxXRSPPrMeMFTL6YN3OjoDjlTOYnA%3D%3D&nonce=U2ldTwAAAADKDk9cDNTgqA%3D%3D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                  <script type="text/javascript">
+                  var data = {"ReadSession":"https://stackauth.com/auth/global/read-session","Request":"9XI5ggo7f9eZP8LQBx0k7qCDJjBQSTGx51/ZmZ7v3NV11Sz6TziE2D2uv+xXRSPPrMeMFTL6YN3OjoDjlTOYnA==","Nonce":"U2ldTwAAAADKDk9cDNTgqA==","Referrer":"http://stackoverflow.com/questions/4360918/correct-opengl-matrix-format","StorageName":"GlobalLogin"};
+
+                  var toMsg = window.parent;
+
+                  var obj = localStorage.getItem(data.StorageName);
+                  if(obj != null) {
+                  var req = new XMLHttpRequest();
+                  req.open('POST', data.ReadSession+'?request='+encodeURIComponent(data.Request)+'&nonce='+encodeURIComponent(data.Nonce)+'&seriesAndToken='+encodeURIComponent(obj), false);
+                  req.send(null);
+                  
+                    if(req.status == 200){
+                      toMsg.postMessage(req.responseText, data.Referrer);
+                    }else{
+                      toMsg.postMessage('No Session', data.Referrer);
+                    }
+                  }else{
+                    toMsg.postMessage('No Local Storage', data.Referrer);
+                  }
+                  </script>
+                  </head><body></body></html>
